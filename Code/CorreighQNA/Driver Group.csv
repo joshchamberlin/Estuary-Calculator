@@ -1,0 +1,49 @@
+Response,Driver Group,PosNeg,Value
+Abundance,Environmental Factors,Negative,3319
+Fitness,Environmental Factors,Negative,6289
+Other Salmon,Environmental Factors,Negative,5981
+Residency,Environmental Factors,Negative,4184
+Size,Environmental Factors,Negative,6289
+Survival,Environmental Factors,Negative,3319
+Abundance,Primary Production,Negative,5064
+Fitness,Primary Production,Negative,5714
+Other Salmon,Primary Production,Negative,4704
+Residency,Primary Production,Negative,7333
+Size,Primary Production,Negative,5715
+Survival,Primary Production,Negative,5064
+Abundance,Food Web,Negative,5512
+Fitness,Food Web,Negative,7361
+Other Salmon,Food Web,Negative,3410
+Residency,Food Web,Negative,4565
+Size,Food Web,Negative,7361
+Survival,Food Web,Negative,5512
+Abundance,Anthropogenic Impacts,Negative,9086
+Fitness,Anthropogenic Impacts,Negative,9286
+Other Salmon,Anthropogenic Impacts,Negative,2246
+Residency,Anthropogenic Impacts,Negative,2212
+Size,Anthropogenic Impacts,Negative,6467
+Survival,Anthropogenic Impacts,Negative,9299
+Abundance,Environmental Factors,Positive,6681
+Fitness,Environmental Factors,Positive,3711
+Other Salmon,Environmental Factors,Positive,4019
+Residency,Environmental Factors,Positive,5816
+Size,Environmental Factors,Positive,3711
+Survival,Environmental Factors,Positive,6681
+Abundance,Primary Production,Positive,4936
+Fitness,Primary Production,Positive,4285
+Other Salmon,Primary Production,Positive,5296
+Residency,Primary Production,Positive,2667
+Size,Primary Production,Positive,4285
+Survival,Primary Production,Positive,4936
+Abundance,Food Web,Positive,4488
+Fitness,Food Web,Positive,2639
+Other Salmon,Food Web,Positive,6590
+Residency,Food Web,Positive,5435
+Size,Food Web,Positive,2639
+Survival,Food Web,Positive,4488
+Abundance,Anthropogenic Impacts,Positive,914
+Fitness,Anthropogenic Impacts,Positive,714
+Other Salmon,Anthropogenic Impacts,Positive,7754
+Residency,Anthropogenic Impacts,Positive,7788
+Size,Anthropogenic Impacts,Positive,3533
+Survival,Anthropogenic Impacts,Positive,701
