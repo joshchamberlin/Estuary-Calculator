@@ -261,7 +261,7 @@ myplot <- function(nodes,As,perturb,monitor,epsilon=1.0E-5,main="",cex.axis=1) {
 # Standard slider plot of all response nodes, perturbing each in turn given the vector of perturbations (press):
 # windows()
 # To output to PDF
-Indiv_Perturb="C:\\Users\\Kathryn.Sobocinski\\Documents\\SSMSP\\QNA\\Indiv_Perturb_Salmon_Traits_v7.5.pdf"
+Indiv_Perturb="C:\\Users\\Catalina.Burch\\Documents\\GitHub\\Estuary-Calculator\\Code\\CatQNA\\CatQNA.pdf"
 pdf(file=Indiv_Perturb)
 # For function
 opar <- par

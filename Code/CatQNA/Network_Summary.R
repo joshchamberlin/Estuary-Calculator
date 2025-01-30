@@ -9,12 +9,13 @@ library(plyr)
 library(ggplot2)
 library(reshape2)
 library(gridExtra)
+library(tidyverse)
 library(igraph) #network analysis
 library(network)
 library(intergraph)
 
 #Load Model
-estuary<-model.dia("test.dia")
+estuary<-model.dia("V1Directed.dia")
 
 #load dia network
 e_edgelist <- estuary %>% 
@@ -23,7 +24,8 @@ e_edgelist <- estuary %>%
 #convert to igraph format
 e_igraph = graph_from_data_frame(e_edgelist, directed = T)
 
-
+#Network Clustering Coefficient
+transitivity(e_igraph, type = "global")
 
 
 #Node Metrics
@@ -31,7 +33,7 @@ e_igraph = graph_from_data_frame(e_edgelist, directed = T)
   #note that the feedback loops count as 2 connections
 degree <- as.data.frame(degree(e_igraph)) %>% 
   rownames_to_column()
-
+mean(degree$`degree(e_igraph)`)
 #In Degree: measures the total connections that flow into a node
 in_degree <- as.data.frame(degree(e_igraph, mode = c('in')))%>% 
   rownames_to_column()
@@ -82,3 +84,65 @@ colnames(node_summary) <- c("node", "degree", "in degree", "out degree", "closen
 
 #export to excel
 write_csv(node_summary, "node_summary.csv")
+
+
+
+
+#Figures
+
+node_summary %>% 
+  ggplot(aes(x=degree, y = fct_reorder(node, degree))) + 
+  geom_col()+
+  theme_minimal()+
+  ggtitle("Degree")
+
+#Degrees
+node_summary %>% 
+  pivot_longer(cols = c(`in degree`:`out degree`), names_to = "in_out", values_to = "degrees") %>% 
+  ggplot(aes(x=degrees, y = fct_reorder(node, degree), fill = in_out)) + 
+  geom_bar(position = "stack", stat = "identity")+
+  scale_x_continuous(expand = c(0,0))+
+  labs(y = "Node")+
+  theme_minimal()+
+  ggtitle("QNM Node Degree")
+
+#Closeness
+node_summary %>%
+  na.omit() %>% 
+  ggplot(aes(x=closeness, y = fct_reorder(node, closeness)))+
+  geom_col()+
+  scale_x_continuous(expand = c(0,0))+
+  labs(y = "Node")+
+  theme_minimal()+
+  ggtitle("QNM Closeness Centrality")
+  
+#Betweeness
+node_summary %>%
+  na.omit() %>% 
+  ggplot(aes(x=betweeness, y = fct_reorder(node, betweeness)))+
+  geom_col()+
+  scale_x_continuous(expand = c(0,0))+
+  labs(y = "Node")+
+  theme_minimal()+
+  ggtitle("QNM Betweeness Centrality")
+
+#Eigen
+node_summary %>%
+  na.omit() %>% 
+  ggplot(aes(x=eigan, y = fct_reorder(node, eigan)))+
+  geom_col()+
+  scale_x_continuous(expand = c(0,0))+
+  labs(y = "Node")+
+  theme_minimal()+
+  ggtitle("QNM Eigenvector Centrality")
+
+#Cluster
+node_summary %>%
+  na.omit() %>% 
+  ggplot(aes(x=cluster, y = fct_reorder(node, cluster)))+
+  geom_col()+
+  scale_x_continuous(expand = c(0,0))+
+  labs(y = "Node")+
+  theme_minimal()+
+  ggtitle("QNM Clustering Coefficient")
+
