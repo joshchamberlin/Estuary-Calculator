@@ -1,0 +1,28 @@
+Species,Description,Lifestage,MD_begin,Year_begin,MD_end,Year_end,Thresh_hi,Thresh_lo
+Chinook,upriver migration and spawning,prespawn,1-Jun,0,15-Oct,0,20,4
+Chinook,egg incubation,incubat,1-Sep,0,31-Dec,0,13,4
+Chinook,freshwater rearing,rearing,1-Nov,0,31-Mar,1,18,9
+Chinook,fry or parr outmigration,outmigr0,1-Dec,0,28-Feb,1,18,9
+Chinook,parr or smolt outmigration,outmigr1,1-Feb,1,15-Aug,1,18,9
+steelhead,upriver migration and spawning,prespawn,1-Jan,1,15-Jun,1,20,4
+steelhead,egg incubation,incubat,1-Mar,1,31-May,1,13,4
+steelhead,freshwater rearing,rearing,1-Apr,1,15-Aug,2,18,4
+steelhead,fry or parr outmigration,outmigr0,1-May,1,31-Jul,1,18,4
+steelhead,parr or smolt outmigration,outmigr1,1-May,1,31-Jul,2,18,4
+coho,upriver migration and spawning,prespawn,1-Nov,0,31-Dec,0,20,4
+coho,egg incubation,incubat,15-Nov,0,30-Mar,1,13,4
+coho,freshwater rearing,rearing,1-Feb,1,31-Mar,2,18,4
+coho,fry or parr outmigration,outmigr0,1-Mar,1,31-Oct,1,18,4
+coho,parr or smolt outmigration,outmigr1,1-Mar,1,30-Jun,2,18,4
+generic,January,Jan,1-Jan,0,31-Jan,0,20,4
+generic,February,Feb,1-Feb,0,28-Feb,0,20,4
+generic,March,Mar,1-Mar,0,31-Mar,0,20,4
+generic,April,Apr,1-Apr,0,30-Apr,0,20,4
+generic,May,May,1-May,0,31-May,0,20,4
+generic,June,Jun,1-Jun,0,30-Jun,0,20,4
+generic,July,Jul,1-Jul,0,31-Jul,0,20,4
+generic,August,Aug,1-Aug,0,31-Aug,0,20,4
+generic,September,Sep,1-Sep,0,30-Sep,0,20,4
+generic,October,Oct,1-Oct,0,31-Oct,0,20,4
+generic,November,Nov,1-Nov,0,30-Nov,0,20,4
+generic,December,Dec,1-Dec,0,31-Dec,0,20,4

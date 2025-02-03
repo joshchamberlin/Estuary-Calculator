@@ -1,0 +1,26 @@
+{
+    "id": "39F83B39",
+    "path": "~/GitHub/Elwha_ST/RShiny_Elwha/app.R",
+    "project_path": "app.R",
+    "type": "r_source",
+    "hash": "2109809744",
+    "contents": "",
+    "dirty": false,
+    "created": 1731608302916.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "15,16",
+        "scrollLine": "14"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1732236583,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1732236583406,
+    "read_only": false,
+    "read_only_alternatives": []
+}
