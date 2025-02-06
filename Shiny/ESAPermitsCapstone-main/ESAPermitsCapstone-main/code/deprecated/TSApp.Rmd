@@ -1,0 +1,244 @@
+---
+title: "Time Series"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+#Reading in packages
+library(flexdashboard)
+library(shiny)
+library(ggplot2)
+library(dplyr)
+library(tidyverse)
+library(NMFSResPermits)
+library(plotly)
+library(viridis)
+library(DT)
+library(shinyjqui)
+#==============================================================
+#Sourcing Script
+#setwd("~/GitHub/ESA_Permits_Capstone")
+source(paste(getwd(), "/code/dependencies/Reading and Filtering.R", sep = ""))
+source(paste(getwd(), "/code/dependencies/TSPreAppCode.R", sep = ""))
+source(paste(getwd(), "/code/dependencies/TSPreAppCodeT.R", sep = ""))
+```
+
+# Stacked Bar Plots
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+```{r}
+shinyApp(
+  ui <-  fluidPage(
+  titlePanel("Authorized and Reported Take (Lethal/Non-Lethal) per Year"),
+  sidebarLayout(
+    
+    sidebarPanel(
+      radioButtons(inputId = "LifeStage", label = "Choose a lifestage",
+                   choices = c("Adult", "Juvenile")),
+      radioButtons(inputId = "Production", label = "Choose an Origin",
+                   choices = c("Natural", "Listed Hatchery")),
+      selectInput(inputId = "ESU", label = "Choose an ESU to View",
+                  choices = levels(df$ESU), 
+                  multiple = F), width = 4), 
+    mainPanel(
+      h5("These charts display the authorized take (lethal and non-lethal)\
+        in number of fish per year. Total authorized is broken down into reported take (yellow) 
+         and unused authorized take (blue)."),
+      h6("*Data is only showing what was reported, not complete"),
+      plotlyOutput("plot1"), fluid = T,
+      plotlyOutput("plot2"), fluid = T,
+    width = 8, height = 7),
+    position = c("left", "right"),
+    fluid = T
+  ),
+    
+    DT::dataTableOutput("table", width = "100%", height = "100%")
+),
+
+
+server <- function(input, output, session){
+  dat <- reactive({
+    req(c(input$LifeStage, input$Production, input$ESU))
+    df1 <- df_plot %>% 
+    filter(LifeStage %in% input$LifeStage) %>% 
+    filter(Production %in% input$Production) %>%  
+    filter(ESU %in% input$ESU)
+  })
+    dat2 <- reactive({
+      req(c(input$LifeStage, input$Production, input$ESU))
+      df1 <- df_plot2 %>% 
+        filter(LifeStage %in% input$LifeStage) %>%
+        filter(Production %in% input$Production) %>%
+        filter(ESU %in% input$ESU)
+  })
+    dat3 <- reactive({
+      dt %>%
+        filter(ESU == input$ESU) %>%
+        filter(LifeStage == input$LifeStage) %>% 
+        filter(Production == input$Production) %>%
+        filter(ResultCode != "Tribal 4d") %>%
+        select(Year:Authorized_Mortality_Unused)
+    })
+output$plot1 <-renderPlotly({
+  ggplot(data = dat(), aes (y = N, x = Year, fill = Take_Type))+ 
+    geom_bar(stat = "identity", position = "stack")+
+    scale_fill_viridis(discrete = T, name = "Take Type") +
+     labs(x = "Year", y = "Number of fish")+ 
+    theme(axis.text.x = element_text(angle = 30, hjust = 0.5, vjust = 0.5))
+  ggplotly(tooltip = c("y", "x", "fill"))
+})
+output$plot2 <-renderPlotly({
+  ggplot(data = dat2(), aes (y = N, x = Year, fill = Take_Type))+ 
+    geom_bar(stat = "identity", position = "stack")+
+    scale_fill_viridis(discrete = T, name = "Take Type") +
+    labs(x = "Year", y = "Number of fish")+ 
+    theme(axis.text.x = element_text(angle = 30, hjust = 0.5, vjust = 0.5))
+  ggplotly(tooltip = c("y", "x", "fill"))
+})
+output$table <- DT::renderDataTable(dat3(),
+                caption = "Note : table excludes 'Tribal 4d' permits for privacy concerns, 
+                but are included in the take totals", 
+                colnames = c("Year", "ESU", "Production", "Life Stage",
+                             "Permit Code", "Gear Type", "Report ID", "Permit Type", 
+                             "Reported Take", "Authorized Take", "Reported Mortality",
+                             "Authorized Mortality", "Unused Take", "Unused Mortality"),
+                options = list(pageLength = 10, autoWidth = T)
+)
+jqui_sortable("#table thead tr")}, 
+options= list (height = 800, width = "98%")
+)
+```
+
+# Percentage Plots
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+
+
+```{r}
+shinyApp(
+ui <-  fluidPage(
+  titlePanel("Percent Reported/Authorized Take (Lethal/Non-Lethal) per Year"),
+  sidebarLayout(
+    
+    sidebarPanel(
+      radioButtons(inputId = "LifeStage", label = "Choose a lifestage",
+                   choices = c("Adult", "Juvenile")),
+      radioButtons(inputId = "Production", label = "Choose an Origin",
+                   choices = c("Natural", "Listed Hatchery")),
+      selectInput(inputId = "ESU", label = "Choose an ESU to View",
+                  choices = levels(df$ESU), 
+                  multiple = F), width = 4),
+    mainPanel(
+    h5("These charts display the percentage of total authorized take (lethal/non-lethal) used (reported) per year"),
+    h6("*Data is only showing what was reported, not complete"), 
+      plotlyOutput("plot1"), fluid = T,
+      plotlyOutput("plot2"), fluid = T,
+      width = 6, height = 7))),
+
+server <- function(input, output, session){
+  dat <- reactive({
+    req(c(input$LifeStage, input$Production, input$ESU))
+    df1 <- dfplot %>% 
+      filter(LifeStage %in% input$LifeStage) %>% 
+      filter(Production %in% input$Production) %>%  
+      filter(ESU %in% input$ESU)
+  })
+  dat2 <- reactive({
+    req(c(input$LifeStage, input$Production, input$ESU))
+    df1 <- dfplot2 %>% 
+      filter(LifeStage %in% input$LifeStage) %>%
+      filter(Production %in% input$Production) %>%
+      filter(ESU %in% input$ESU)
+  })
+  output$plot1 <-renderPlotly({
+    ggplot(data = dat(), aes (y = Percentage, x = Year, fill = Take_Type))+ 
+      geom_bar(stat = "identity", position = "stack")+
+      scale_fill_viridis(discrete = T, name = "Take Type", option = "C") +
+      labs(x = "Year", y = "Percent Take (%)")+
+      theme(axis.text.x = element_text(angle = 30, hjust = 0.5, vjust = 0.5))
+    ggplotly(tooltip = c("y", "x"))
+  })
+  output$plot2 <-renderPlotly({
+    ggplot(data = dat2(), aes (y = Percentage, x = Year, fill = Take_Type))+ 
+      geom_bar(stat = "identity", position = "stack")+
+      scale_fill_viridis(discrete = T, name = "Take Type", option = "C") +
+      labs(x = "Year", y = "Percent Take (%)")+
+      theme(axis.text.x = element_text(angle = 30, hjust = 0.5, vjust = 0.5))
+    ggplotly(tooltip = c("y", "x"))
+  })
+  
+}, options= list (height = 800, width = "98%"))
+```
+
+# Line Graphs
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+```{r}
+shinyApp(
+  ui <-  fluidPage(
+  titlePanel("Authorized and Reported Take (Lethal/Non-Lethal) per Year"),
+  sidebarLayout(
+    
+    sidebarPanel(
+      radioButtons(inputId = "LifeStage", label = "Choose a lifestage",
+                   choices = c("Adult", "Juvenile")),
+      radioButtons(inputId = "Production", label = "Choose an Origin",
+                   choices = c("Natural", "Listed Hatchery")),
+      selectInput(inputId = "ESU", label = "Choose an ESU to View",
+                  choices = levels(df$ESU), 
+                  multiple = F), width = 4),
+    mainPanel(
+      h5("These charts display the authorized and reported take 
+         (lethal/non-lethal) per year"),
+      h6("*Data is only showing what was reported, not complete"), 
+      plotlyOutput("plot1"), fluid = T,
+      plotlyOutput("plot2"), fluid = T,
+      width = 6, height = 7))),
+
+server <- function(input, output, session){
+  dat <- reactive({
+    req(c(input$LifeStage, input$Production, input$ESU))
+    df1 <- plot %>% 
+      filter(LifeStage %in% input$LifeStage) %>% 
+      filter(Production %in% input$Production) %>%  
+      filter(ESU %in% input$ESU)
+  })
+  dat2 <- reactive({
+    req(c(input$LifeStage, input$Production, input$ESU))
+    df1 <- plot2 %>% 
+      filter(LifeStage %in% input$LifeStage) %>%
+      filter(Production %in% input$Production) %>%
+      filter(ESU %in% input$ESU)
+  })
+  output$plot1 <-renderPlotly({
+    ggplot(data = dat(), aes (y = N, x = Year, color = Take, group = Take))+ 
+      geom_line()+
+      geom_point()+
+      scale_color_viridis(discrete = T, name = "Take Type", option = "C") +
+      labs(x = "Year", y = "Number of Fish")+ 
+      theme(axis.text.x = element_text(angle = 30, hjust = 0.5, vjust = 0.5),
+               panel.background = element_rect(fill = "#A5A3A3" ))
+    ggplotly(tooltip = c("y", "x", "fill"))
+  })
+  output$plot2 <-renderPlotly({
+    ggplot(data = dat2(), aes (y = N, x = Year, color = Take, group = Take))+ 
+      geom_line()+
+      geom_point()+
+      scale_color_viridis(discrete = T, name = "Take Type", option = "C") +
+      labs(x = "Year", y = "Number of Fish")+ 
+      theme(axis.text.x = element_text(angle = 30, hjust = 0.5, vjust = 0.5),
+            panel.background = element_rect(fill = "#A5A3A3") )
+    ggplotly(tooltip = c("y", "x", "fill"))
+  }  
+  
+)},
+options= list (height = 800, width = "98%"))
+```
+

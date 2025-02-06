@@ -1,0 +1,373 @@
+---
+title: "Final Project"
+author: "Alana Santana"
+date: "5/28/2022"
+output: 
+  flexdashboard::flex_dashboard:
+     theme: yeti 
+     source_code: embed
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, include=FALSE}
+#Read in programs
+library(here)
+library(ggplot2)
+library(sf)
+library(dplyr)
+library(tidyverse)
+library(leaflet)
+library(htmltools)
+library(htmlwidgets)
+library(lubridate)
+library(flexdashboard)
+sf_use_s2(FALSE)
+```
+
+```{r, include=FALSE}
+#Read in data
+wcr <- read.csv(here("data", "WCRpermitBiOp_allregns_all_years__7Jan2022.csv"))
+wbd.hucs <- read_sf(here("data", "WCR_HUC8", "WCR_HUC8.shp"))
+state.bound <- read_sf(here("data", "cb_2018_us_state_20m", "cb_2018_us_state_20m.shp"))
+```
+
+```{r, include=FALSE}
+#Fixing time variable 
+a<-as.factor(wcr$DateIssued)
+b<-strptime(a,format="%Y-%m-%d") 
+Year <- format(as.Date(b, format ="%Y-%m-%d" ), "%Y")
+Year <- as.data.frame(Year)
+wcr <- cbind(wcr, Year)
+```
+
+```{r, include=FALSE}
+#Filtering Data to only show issued, active, recent permits, relevant permits  (within the last 10 Years)
+wcr_rev <- wcr %>% 
+  filter(PermitStatus == "Issued") #Issued Permits
+wcr_rev <- wcr_rev %>% 
+  filter(DateExpired >= Sys.Date()) #DateField >= Sys.Date() puts it to the date of the system #Current Permits
+wcr_rev <- wcr_rev %>% 
+  filter(DateIssued >"2012-01-01") #Permits from last 10 years
+wcr_rev <- wcr_rev %>% 
+  filter(ResultCode == c("NMFS 10a1A Salmon","4d", "NMFS BiOp DTA", "Tribal 4d")) #Filtering for relevant permit type
+```
+
+```{r, include=FALSE}
+#Renaming Data
+
+#Renaming lifestage
+wcr_rev <- wcr_rev %>%
+    mutate(LifeStage = recode(LifeStage,
+                              "Smolt" = "Juvenile",
+                              "Fry" = "Juvenile",
+                              "Larvae" = "Juvenile",
+                              "Subadult" = "Adult"))  
+ 
+#Renaming common name
+wcr_rev <- wcr_rev %>% 
+  mutate(CommonName = recode(CommonName,
+               "Salmon, coho" = "coho salmon",
+               "Steelhead" = "steelhead", #steelhead respawn
+               "Eulachon" = "eulachon",
+               "Salmon, Chinook" = "Chinook salmon",
+               "Salmon, chum" = "chum salmon",
+               "Salmon, sockeye" = "sockeye salmon",
+               "Sturgeon, green" = "green sturgeon",
+               "Rockfish, Canary" = "canary rockfish",
+               "Rockfish, Bocaccio" = "bocaccio",
+              "Rockfish, Yelloweye" = "yelloweye rockfish"))
+
+#Renaming and filtering by population 
+
+#Grouping species with population
+wcr_rev %>% 
+  select(c(CommonName, Population))
+wcr_rev<-wcr_rev %>% 
+    mutate(Species = paste(Population, CommonName, sep = " "))
+
+#Renaming NA Runs
+wcr_rev <- wcr_rev %>% 
+  mutate(Species = recode(Species, 
+         "NA sockeye salmon" = "Columbia River sockeye salmon"))
+
+```
+
+```{r, include=FALSE}
+#Creating new columns
+adults <- wcr_rev %>% 
+  filter(LifeStage == "Adult") #Adult Data set
+juvenile <- wcr_rev %>% 
+  filter(LifeStage == "Juvenile") # Juvenile Data set
+```
+
+```{r, include=FALSE}
+#Joining data sets with spatial data
+wbd.hucs$huc8 <- as.double(wbd.hucs$huc8)
+wcr_spatial <- right_join(x = wbd.hucs, y = adults, by = c("huc8" = "HUCNumber")) 
+wcr_spatialJ <-right_join(x = wbd.hucs, y = juvenile, by = c("huc8" = "HUCNumber"))
+```
+
+```{r, include=FALSE}
+#Creating data for Graphs
+wcr_hist <- wcr %>% 
+  filter(PermitStatus == "Issued") 
+wcr_hist <- wcr_hist %>% 
+  filter(!is.na(Year))
+wcr_hist <- wcr_hist %>% 
+  filter(ResultCode == c("NMFS 10a1A Salmon","4d", "NMFS BiOp DTA", "Tribal 4d"))
+
+#Creates data for specific permit type
+NMFS_salh <- wcr_hist %>% 
+  select(Year,ResultCode) %>% 
+  group_by(Year) %>% 
+  count(permit = ResultCode == "NMFS 10a1A Salmon") 
+NMFS_salh <- subset(NMFS_salh, permit != FALSE) 
+#Groups permit type and counts # of permits per year
+NMFS_salh  <- NMFS_salh %>% 
+  group_by(Year) %>% 
+  summarise(perm_cnt = sum(n))
+#Creates data for specific permit type
+Four_Dh <- wcr_hist %>% 
+  select(Year, ResultCode) %>% 
+  group_by(Year) %>% 
+  count(permit = ResultCode == "4d")
+Four_Dh <- subset(Four_Dh, permit != FALSE)
+#Groups permit type and counts # of permits per year
+Four_Dh <- Four_Dh %>% 
+  group_by(Year) %>% 
+  summarise(perm_cnt = sum(n))
+#Creates data for specific permit type
+Bioph <- wcr_hist %>% 
+  select(Year, ResultCode) %>% 
+  group_by(Year) %>% 
+  count(permit = ResultCode ==  "NMFS BiOp DTA")
+Bioph <- subset(Bioph, permit != FALSE)
+#Groups permit type and counts # of permits per year
+Bioph  <- Bioph %>% 
+  group_by(Year) %>% 
+  summarise(perm_cnt = sum(n))
+#Creates data for specific permit type
+Tribalh <- wcr_hist %>% 
+  select(Year, ResultCode) %>% 
+  group_by(Year) %>% 
+  count( permit = ResultCode == "Tribal 4d")
+Tribalh <- subset(Tribalh, permit != FALSE)
+#Groups permit type and counts # of permits per year
+Tribalh  <- Tribalh %>% 
+  group_by(Year) %>% 
+  summarise(perm_cnt = sum(n))
+```
+
+
+```{r, include=FALSE}
+#Renaming HUCs
+wcr_spatial <- wcr_spatial %>% 
+  mutate(HUC_name = recode(huc8,
+                       "18050001" = "Suisun Bay - 18050001",
+                       "18070102" = "Santa Clara - 18070102",
+                       "17100203" = "Wilson-Trask-Nestucca - 17100203",
+                       "17090004" = "Mckenzie - 17090004",
+                       "17100206" = "Siuslaw - 17100206",
+                       "17100106" = "Willapa Bay - 17100106",
+                       "17100302" = "South Umpqua - 17100302",
+                       "18010102" = "Mad-Redwood - 18010102",
+                       "18010108" = "Big-Navarro-Garcia - 18010108",
+                       "18010110" = "Russian - 18010110",
+                       "18010211" = "Trinity - 18010211",
+                       "18020104" = "Sacramento-Stone Corral - 18020104",
+                       "18040003" = "San Joaquin Delta - 18040003",
+                       "18050002" = "San Pablo Bay - 18050002",
+                       "18050005" = "Tomales-Drake Bays - 18050005",
+                       "18050006" = "San Francisco Coastal South - 18050006",
+                       "18060010" = "Santa Ynez - 18060010",
+                       "18060013" = "Santa Barbara Coastal - 18060013",
+                       "18070101" = "Ventura - 18070101",
+                       "17110015" = "Nisqually - 17110015",
+                       "17090001" = "Middle Fork Willamette - 17090001",
+                       "17100307" = "Upper Rogue - 17100307",
+                       "17090002" = "Coastal Fork Willamette - 17090002",
+                       "17090005" = "North Santiam - 17090005",
+                       "17090006" = "South Santiam - 17090006",
+                       "17060103" = "Lower Snake-Asotin - 17060103",
+                       "17070101" = "Middle Columbia-Lake Wallula - 17070101",
+                       "17020008" = "Methow - 17020008",
+                       "17020010" = "Upper Columbia-Entiat - 17020010",
+                       "17020011" = "Wenatchee - 17020011",
+                       "17080005" = "Lower Cowlitz - 17080005",
+                       "17110003" = "San Juan Islands - 17110003",
+                       "17060205" = "Upper Middle Fork Salmon - 17060205", 
+                       "17060101" = "Hells Canyon - 17060101",
+                       "18070104" = "Santa Monica Bay - 18070104",
+                       "17070105" = "Middle Columbia-Hood - 17070105",
+                       "18010206" = "Upper Klamath - 18010206",
+                       "17080003" = "Lower Columbia-Clatskanie - 17080003",
+                       "99999999" = "Unknown",
+                       "18020109" = "Lower Sacramento - 18020109",
+                       "18020101" = "Sacramento-Lower Cow-Lower Clear - 18020101",
+                       "18020112" = "Sacramento-Upper Clear - 18020112",
+                       "18020118" = "Upper Cow-Battle - 18020118",
+                       "18060001" = "San Lorenzo-Soquel - 18060001",
+                       "NA" = "Unknown",
+                       "18060012" = "Carmel - 18060012",
+                       "18040005" = "Lower Cosumnes-Lower Mokelumne - 18040005"))
+                         
+```
+
+```{r, include=FALSE}
+#Creating Density Data per HUC
+wcr_spatial<- wcr_spatial %>% 
+  group_by(huc8, Year, HUC_name, states, Organization) %>% 
+  count(permit = ResultCode) 
+wcr_spatial <- subset(wcr_spatial, permit != FALSE) 
+
+
+wcr_spatial <- wcr_spatial %>% 
+  group_by(huc8, Year,  HUC_name, states, Organization) %>% 
+  summarise(perm_count = sum(n)) 
+quantile(wcr_spatial$perm_count, prob = seq(0, 1, 0.1))
+
+#Creatin bins
+bins <- c(1, 2, 3, 4, 5, 6, 10)
+pal <- colorBin("RdPu", domain = wcr_spatial$perm_count, bins = bins) 
+label = c("1","2","3","4","5", ">= 6")
+
+```
+
+
+
+Map
+===============================
+  
+### Map
+```{r, echo=FALSE}
+#Creating Map
+labels <- paste0(
+  "<strong> State: </strong> ",
+  wcr_spatial$states, "<br/> ",
+  "<strong> HUC: </strong> ",
+  wcr_spatial$HUC_name, "<br/> ",
+  "<strong> Organization: </strong> ",
+  wcr_spatial$Organization, "<br/> ",
+  "<strong> # of Active Permits: </strong> ",
+  round(wcr_spatial$perm_count, 1), "<br/> "
+) %>%
+  lapply(htmltools::HTML)
+
+leaflet(wcr_spatial) %>% 
+  addTiles(group = "OSM") %>% 
+  addProviderTiles(providers$Stamen.TonerLite) %>% 
+  addEasyButton(easyButton(
+    icon="fa-crosshairs", title="Locate Me",
+    onClick=JS("function(btn, map){ map.locate({setView: true}); }"))) %>%
+  addPolygons(
+    fillColor = ~pal(perm_count), 
+    color = "transparent",
+    fillOpacity = 0.9, 
+    label = ~labels,
+    highlight = highlightOptions(color = "white", bringToFront = T)) %>% 
+    setView(lng = -124.072971, lat = 43.458,
+          zoom = 5) %>% 
+  addLayersControl(baseGroups = c("Stamen.TonerLite", "OSM"),
+                   options = layersControlOptions(collapsed = T)) %>% 
+    leaflet::addLegend( 
+      pal = pal, 
+      values = ~perm_count,
+      opacity = 0.97, 
+      title = "Permits per HUC8", 
+      position = "bottomleft", 
+       labFormat = function(type, cuts, p) {
+                                                   paste0(label)})
+
+```
+
+
+NMFS 10a1A Salmon Plot
+====================================
+### NMFS 10a1A Salmon Plot
+```{r, echo=FALSE}
+#Line Graphs
+
+#NMFS 10a1A Salmon
+ggplot(data = NMFS_salh, aes(x=Year, y= perm_cnt))+
+geom_col(fill=I("blue"), 
+      col=I("red"), 
+      alpha=I(.2)) +
+   geom_label(aes(label = scales::comma(perm_cnt)),
+             size = 2,
+             nudge_y = 13,
+             parse =T) +
+  scale_x_discrete(expand = c(0,0))+
+  scale_y_continuous(labels = scales::comma) +
+  coord_flip() +
+  theme_minimal()+
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  labs(x = "Year", y = "Number of Issued Permits", title = "# of Issued NMFS 10a1A Salmon Permits over Time ")
+```
+
+
+4d Plot
+====================================
+### 4d Plot
+
+```{r, echo=FALSE}
+ggplot(data = Four_Dh, aes(x=Year, y= perm_cnt, !is.na (perm_cnt)))+
+geom_col(fill=I("blue"), 
+      col=I("purple"), 
+      alpha=I(.2))+
+  geom_label(aes(label = scales::comma(perm_cnt)),
+             size = 2,
+             nudge_y = 60) +
+  scale_x_discrete(expand = c(0,0))+
+  scale_y_continuous(labels = scales::comma) +
+  coord_flip() +
+  theme_minimal()+
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  labs(x = "Year", y = "Number of Issued Permits", title = "# of Issued 4d Permits over Time ")
+```
+
+NMFS BiOp DTA Plot
+===================================
+### NMFS BiOp DTA Plot
+
+```{r, echo=FALSE}
+ggplot(data = Bioph, aes(x=Year, y= perm_cnt))+
+geom_col(fill=I("blue"), 
+      col=I("orange"), 
+      alpha=I(.2)) +
+  geom_label(aes(label = scales::comma(perm_cnt)),
+             size = 5,
+             nudge_y = 26)+
+  scale_x_discrete(expand = c(0,0))+
+  scale_y_continuous(labels = scales::comma) +
+  coord_flip() +
+  theme_minimal()+
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  labs(x = "Year", y = "Number of Issued Permits", title = "# of Issued NMFS BiOp DTA Permits over Time ")
+```
+
+Tribal 4d Plot
+==================================
+### Tribal 4d Plot
+
+```{r, echo=FALSE}
+ggplot(data = Tribalh, aes(x=Year, y= perm_cnt))+
+geom_col(fill=I("blue"), 
+      col=I("green"), 
+      alpha=I(.2)) +
+  geom_label(aes(label = scales::comma(perm_cnt)),
+             size = 4,
+             nudge_y = 3)+
+  scale_x_discrete(expand = c(0,0))+
+  scale_y_continuous(labels = scales::comma) +
+  coord_flip() +
+  theme_minimal()+
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank()) +
+  labs(x = "Year", y = "Number of Issued Permits", title = "# of Issued Tribal 4d Permits over Time ")
+```

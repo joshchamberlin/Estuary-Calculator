@@ -1,0 +1,537 @@
+﻿speciesid,populationid,Species,Population/Stock,Status,HUC8,Basin Name
+1057,408,"Abalone, Black",California,NMFS Endangered,99999999,N/A
+1056,55,"Abalone, white",California,NMFS Endangered,NULL,NULL
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100205,Alsea
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17080006,Lower Columbia
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100201,Necanicum
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100206,Siuslaw
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17090012,Lower Willamette
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17080001,Lower Columbia-Sandy
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100207,Siltcoos
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100303,Umpqua
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100304,Coos
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100305,Coquille
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100306,Sixes
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100310,Lower Rogue
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100312,Chetco
+1028,427,Eulachon,Southern DPS,NMFS Threatened,18010101,Smith River
+1028,427,Eulachon,Southern DPS,NMFS Threatened,18010209,Lower Klamath River
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100203,Wilson-Trask-Nestucca
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100202,Nehalem
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100204,Siletz-Yaquina
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110004,Nooksack
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110002,Strait Of Georgia
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110003,San Juan Islands
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110007,Lower Skagit
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110021,Crescent-Hoko
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100101,Hoh-Quillayute
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110019,Kitsap
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110008,Stillaguamish
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110020,Dungeness-Elwha
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110011,Snohomish
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110017,Skokomish
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100104,Lower Chehalis
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110013,Duwamish
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110014,Puyallup
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110015,Nisqually
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110016,Deschutes
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100105,Grays Harbor
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110018,Hood Canal
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17110012,Lake Washington
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100102,Queets-Quinault
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17080005,Cowlitz
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17100106,Willapa
+1028,427,Eulachon,Southern DPS,NMFS Threatened,17080002,Lewis
+1028,427,Eulachon,Southern DPS,NMFS Threatened,18010102,Mad-Redwood
+241,935,"Rockfish, Bocaccio",Puget Sound/Georgia Basin DPS,NMFS Endangered,NULL,NULL
+254,936,"Rockfish, Yelloweye",Puget Sound/Georgia Basin DPS,NMFS Threatened,NULL,NULL
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18050006,San Francisco Coastal South
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18050005,Tomales-Drake Bays
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18010102,Mad-Redwood
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18010103,Upper Eel
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18010104,Middle Fork Eel
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18010105,Lower Eel
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18010106,South Fork Eel
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18010107,Mattole
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18010108,Big-Navarro-Garcia
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18010109,Gualala-Salmon
+1,412,"Salmon, Chinook",California Coastal,NMFS Threatened,18010110,Russian
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020101,Sacramento-Lower Cow-Lower Clear
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020102,Lower Cottonwood
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020103,Sacramento-Lower Thomes
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020104,Sacramento-Stone Corral
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020105,Lower Butte
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020106,Lower Feather
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020107,Lower Yuba
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020108,Lower Bear
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020109,Lower Sacramento
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020111,Lower American
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020112,Sacramento-Upper Clear
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020113,Cottonwood headwaters
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020114,Upper Elder-Upper Thomes
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020118,Upper Cow-Battle
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020120,Upper Butte
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020124,Honcut headwaters
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020119,Mill-Big Chico
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18020125,Upper Yuba
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18040001,Middle San Joaquin-Lower Chowchilla
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18040002,Middle San Joaquin-Lower Merced-Lower Stanislaus
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18040003,San Joaquin Delta
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18040004,Lower Calaveras-Mormon Slough
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18040006,Upper San Joaquin
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18040008,Upper Merced
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18040009,Upper Tuolumne
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18040010,Upper Stanislaus
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18050001,Suisun Bay
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18050002,San Pablo Bay
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18050004,San Francisco Bay
+1,97,"Salmon, Chinook",Central Valley spring-run,NMFS Threatened,18050006,San Francisco Coastal South
+1,101,"Salmon, Chinook",Lower Columbia River,NMFS Threatened,17080002,Lewis
+1,101,"Salmon, Chinook",Lower Columbia River,NMFS Threatened,17080005,Cowlitz
+1,101,"Salmon, Chinook",Lower Columbia River,NMFS Threatened,17080004,Upper Cowlitz
+1,101,"Salmon, Chinook",Lower Columbia River,NMFS Threatened,17080001,Lower Columbia-Sandy
+1,101,"Salmon, Chinook",Lower Columbia River,NMFS Threatened,17070105,Middle Columbia-Hood
+1,101,"Salmon, Chinook",Lower Columbia River,NMFS Threatened,17090012,Lower Willamette
+1,101,"Salmon, Chinook",Lower Columbia River,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+1,101,"Salmon, Chinook",Lower Columbia River,NMFS Threatened,17080006,Lower Columbia
+1,101,"Salmon, Chinook",Lower Columbia River,NMFS Threatened,17090011,Clackamas
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110002,Strait Of Georgia
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110003,San Juan Islands
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110004,Nooksack
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110005,Upper Skagit
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110006,Sauk
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110007,Lower Skagit
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110008,Stillaguamish
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110009,Skykomish
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110010,Snoqualmie
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110011,Snohomish
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110012,Lake Washington
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110013,Duwamish
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110014,Puyallup
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110015,Nisqually
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110016,Deschutes
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110017,Skokomish
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110018,Hood Canal
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110019,Kitsap
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110020,Dungeness-Elwha
+1,100,"Salmon, Chinook",Puget Sound,NMFS Threatened,17110021,Crescent-Hoko
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020120,Upper Butte
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020125,Upper Yuba
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020124,Honcut headwaters
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020119,Mill-Big Chico
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020118,Upper Cow-Battle
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020114,Upper Elder-Upper Thomes
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020113,Cottonwood headwaters
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020112,Sacramento-Upper Clear
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020111,Lower American
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020109,Lower Sacramento
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020108,Lower Bear
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020107,Lower Yuba
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020106,Lower Feather
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020104,Sacramento-Stone Corral
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020105,Lower Butte
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020103,Sacramento-Lower Thomes
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020102,Lower Cottonwood
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18020101,Sacramento-Lower Cow-Lower Clear
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18050004,San Francisco Bay
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18050002,San Pablo Bay
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18050001,Suisun Bay
+1,3,"Salmon, Chinook",Sacramento River winter-run,NMFS Endangered,18050006,San Francisco Coastal South
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060107,Lower Snake-Tucannon
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060110,Lower Snake River
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17080006,Lower Columbia
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060103,Lower Snake-Asotin
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060106,Lower Grande Ronde
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17070101,Middle Columbia-Lake Wallula
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17090012,Lower Willamette
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060101,Hells Canyon
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060102,Imnaha River
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17070204,Lower John Day
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17070105,Middle Columbia-Hood
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17080001,Lower Columbia-Sandy
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17070306,Lower Deschutes
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060306,Clearwater
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060303,Lochsa
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060302,Lower Selway
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060304,Middle Fork Clearwater
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060301,Upper Selway
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060305,South Fork Clearwater
+1,1,"Salmon, Chinook",Snake River fall-run,NMFS Threatened,17060209,Lower Salmon
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060101,Hells Canyon
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060102,Imnaha River
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060103,Lower Snake-Asotin
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060104,Upper Grande Ronde
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060105,Wallowa River
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060106,Lower Grande Ronde
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060107,Lower Snake-Tucannon
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060110,Lower Snake River
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060201,Upper Salmon
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060202,Pahsimeroi
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060203,Middle Salmon-Panther
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060204,Lemhi
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060205,Upper Middle Fork Salmon
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060206,Lower Middle Fork Salmon
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060207,Middle Salmon-Chamberlain
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060208,South Fork Salmon
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060209,Lower Salmon
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17060210,Little Salmon River
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17070101,Middle Columbia-Lake Wallula
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17070105,Middle Columbia-Hood
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17070204,Lower John Day
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17070306,Lower Deschutes
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17080001,Lower Columbia-Sandy
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17080006,Lower Columbia
+1,2,"Salmon, Chinook",Snake River spring/summer-run,NMFS Threatened,17090012,Lower Willamette
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17020008,Methow
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17020006,Okanogan
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17070105,Middle Columbia-Hood
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17080001,Lower Columbia-Sandy
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17070204,Lower John Day
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17090012,Lower Willamette
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17070101,Middle Columbia-Lake Wallula
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17080003,Lower Columbia-Clatskanie
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17080006,Lower Columbia
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17020016,Upper Columbia-Priest Rapids
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17020011,Wenatchee
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17020010,Upper Columbia-Entiat
+1,103,"Salmon, Chinook",Upper Columbia River spring-run,NMFS Endangered,17020005,Chief Joseph
+1,1235,"Salmon, Chinook",Upper Columbia River spring-run NEP,NMFS Nonessential Experimental,17020006,Okanogan
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090010,Tualatin
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090008,Yamhill
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17080001,Lower Columbia-Sandy
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17070105,Middle Columbia-Hood
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090004,McKenzie
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090001,Middle Fork Willamette
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090002,Coast Fork Willamette
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17080006,Lower Columbia
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090011,Clackamas
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090007,Middle Willamette
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090009,Molalla-Pudding
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090003,Upper Willamette
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090005,North Santiam
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090006,South Santiam
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+1,102,"Salmon, Chinook",Upper Willamette River,NMFS Threatened,17090012,Lower Willamette
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17090012,Lower Willamette
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17090009,Molalla-Pudding
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17090007,Middle Willamette
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17090011,Clackamas
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17080006,Lower Columbia
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17070105,Middle Columbia-Hood
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17080001,Lower Columbia-Sandy
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17080004,Upper Cowlitz
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17080005,Cowlitz
+5,110,"Salmon, chum",Columbia River,NMFS Threatened,17080002,Lewis
+5,93,"Salmon, chum",Hood Canal summer-run,NMFS Threatened,17110017,Skokomish
+5,93,"Salmon, chum",Hood Canal summer-run,NMFS Threatened,17110019,Kitsap
+5,93,"Salmon, chum",Hood Canal summer-run,NMFS Threatened,17110020,Dungeness-Elwha
+5,93,"Salmon, chum",Hood Canal summer-run,NMFS Threatened,17110018,Hood Canal
+2,30,"Salmon, coho",Central California Coast,NMFS Endangered,18010109,Gualala-Salmon
+2,30,"Salmon, coho",Central California Coast,NMFS Endangered,18010108,Big-Navarro-Garcia
+2,30,"Salmon, coho",Central California Coast,NMFS Endangered,18010110,Russian
+2,30,"Salmon, coho",Central California Coast,NMFS Endangered,18050005,Tomales-Drake Bays
+2,30,"Salmon, coho",Central California Coast,NMFS Endangered,18050006,San Francisco Coastal South
+2,30,"Salmon, coho",Central California Coast,NMFS Endangered,18060001,San Lorenzo-Soquel
+2,30,"Salmon, coho",Central California Coast,NMFS Endangered,18010111,Bodega Bay
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17080002,Lewis
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17080004,Upper Cowlitz
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17080005,Cowlitz
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17080001,Lower Columbia-Sandy
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17090008,Yamhill
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17090010,Tualatin
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17080006,Lower Columbia
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17090011,Clackamas
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17090012,Lower Willamette
+2,37,"Salmon, coho",Lower Columbia River,NMFS Threatened,17070105,Middle Columbia-Hood
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100201,Necanicum
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100202,Nehalem
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100203,Wilson-Trask-Nestucca
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100204,Siletz-Yaquina
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100205,Alsea
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100206,Siuslaw
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100207,Siltcoos
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100303,Umpqua
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100304,Coos
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100301,North Umpqua
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100302,South Umpqua
+2,73,"Salmon, coho",Oregon Coast,NMFS Threatened,17100305,Coquille
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,17100306,Sixes
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,17100307,Upper Rogue
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,17100308,Middle Rogue
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,17100310,Lower Rogue
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,17100309,Applegate
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,17100311,Illinois
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,17100312,Chetco
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010101,Smith
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010102,Mad-Redwood
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010103,Upper Eel
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010104,Middle Fork Eel
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010105,Lower Eel
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010106,South Fork Eel
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010107,Mattole
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010206,Upper Klamath
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010207,Shasta
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010208,Scott
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010209,Lower Klamath
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010210,Salmon
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010211,Trinity
+2,29,"Salmon, coho",Southern Oregon/Northern California Coast,NMFS Threatened,18010212,South Fork Trinity
+4,111,"Salmon, sockeye",Ozette Lake,NMFS Threatened,17100101,Hoh-Quillayute
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17060107,Lower Snake-Tucannon
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17060110,Lower Snake River
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17070105,Middle Columbia-Hood
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17070204,Lower John Day
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17060101,Hells Canyon
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17060103,Lower Snake-Asotin
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17090012,Lower Willamette
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17070101,Middle Columbia-Lake Wallula
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17080006,Lower Columbia
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17080003,Lower Columbia-Clatskanie
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17060209,Lower Salmon
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17060207,Middle Salmon-Chamberlain
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17060203,Middle Salmon-Panther
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17060204,Lemhi
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17060201,Upper Salmon
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17060202,Pahsimeroi
+4,4,"Salmon, sockeye",Snake River,NMFS Endangered,17080001,Lower Columbia-Sandy
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020101,Sacramento-Lower Cow-Lower Clear
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020102,Lower Cottonwood
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020103,Sacramento-Lower Thomes
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020104,Sacramento-Stone Corral
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020105,Lower Butte
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020106,Lower Feather
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020107,Lower Yuba
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020108,Lower Bear
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020109,Lower Sacramento
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020111,Lower American
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020112,Sacramento-Upper Clear
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020113,Cottonwood headwaters
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020114,Upper Elder-Upper Thomes
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020118,Upper Cow-Battle
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020119,Mill-Big Chico
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020124,Honcut headwaters
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020125,Upper Yuba
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020120,Upper Butte
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040002,Middle San Joaquin-Lower Merced-Lower Stanislaus
+3,69,Steelhead,California Central Valley,NMFS Threatened,18020127,Upper Coon-Upper Auburn
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040001,Middle San Joaquin-Lower Chowchilla
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040003,San Joaquin Delta
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040008,Upper Merced
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040005,Lower Cosumnes-Lower Mokelumne
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040006,Upper San Joaquin
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040011,Upper Calaveras
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040012,Upper Mokelumne
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040014,Panoche-San Luis Reservoir
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040009,Upper Tuolumne
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040010,Upper Stanislaus
+3,69,Steelhead,California Central Valley,NMFS Threatened,18040004,Lower Calaveras-Mormon Slough
+3,69,Steelhead,California Central Valley,NMFS Threatened,18050001,Suisun Bay
+3,69,Steelhead,California Central Valley,NMFS Threatened,18050002,San Pablo Bay
+3,69,Steelhead,California Central Valley,NMFS Threatened,18050004,San Francisco Bay
+3,23,Steelhead,Central California Coast,NMFS Threatened,18050005,Tomales-Drake Bays
+3,23,Steelhead,Central California Coast,NMFS Threatened,18050006,San Francisco Coastal South
+3,23,Steelhead,Central California Coast,NMFS Threatened,18050003,Coyote
+3,23,Steelhead,Central California Coast,NMFS Threatened,18050004,San Francisco Bay
+3,23,Steelhead,Central California Coast,NMFS Threatened,18050001,Suisun Bay
+3,23,Steelhead,Central California Coast,NMFS Threatened,18050002,San Pablo Bay
+3,23,Steelhead,Central California Coast,NMFS Threatened,18060001,San Lorenzo-Soquel
+3,23,Steelhead,Central California Coast,NMFS Threatened,18010111,Bodega Bay
+3,23,Steelhead,Central California Coast,NMFS Threatened,18010110,Russian
+3,1203,Steelhead,Deschutes River Steelhead NEP,NMFS Nonessential Experimental,17070306,Lower Deschutes
+3,1203,Steelhead,Deschutes River Steelhead NEP,NMFS Nonessential Experimental,17070303,South Fork Crooked
+3,1203,Steelhead,Deschutes River Steelhead NEP,NMFS Nonessential Experimental,17070302,Little Deschutes
+3,1203,Steelhead,Deschutes River Steelhead NEP,NMFS Nonessential Experimental,17070301,Upper Deschutes
+3,1203,Steelhead,Deschutes River Steelhead NEP,NMFS Nonessential Experimental,17070305,Lower Crooked
+3,1203,Steelhead,Deschutes River Steelhead NEP,NMFS Nonessential Experimental,17070304,Upper Crooked
+3,57,Steelhead,Lower Columbia River,NMFS Threatened,17090011,Clackamas
+3,57,Steelhead,Lower Columbia River,NMFS Threatened,17080006,Lower Columbia
+3,57,Steelhead,Lower Columbia River,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+3,57,Steelhead,Lower Columbia River,NMFS Threatened,17090012,Lower Willamette
+3,57,Steelhead,Lower Columbia River,NMFS Threatened,17080001,Lower Columbia-Sandy
+3,57,Steelhead,Lower Columbia River,NMFS Threatened,17070105,Middle Columbia-Hood
+3,57,Steelhead,Lower Columbia River,NMFS Threatened,17080002,Lewis
+3,57,Steelhead,Lower Columbia River,NMFS Threatened,17080005,Cowlitz
+3,57,Steelhead,Lower Columbia River,NMFS Threatened,17080004,Upper Cowlitz
+3,72,Steelhead,Northern California,NMFS Threatened,18010102,Mad-Redwood
+3,72,Steelhead,Northern California,NMFS Threatened,18010103,Upper Eel
+3,72,Steelhead,Northern California,NMFS Threatened,18010109,Gualala-Salmon
+3,72,Steelhead,Northern California,NMFS Threatened,18010108,Big-Navarro-Garcia
+3,72,Steelhead,Northern California,NMFS Threatened,18010107,Mattole
+3,72,Steelhead,Northern California,NMFS Threatened,18010105,Lower Eel
+3,72,Steelhead,Northern California,NMFS Threatened,18010104,Middle Fork Eel
+3,72,Steelhead,Northern California,NMFS Threatened,18010106,South Fork Eel
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110002,Strait Of Georgia
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110003,San Juan Islands
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110004,Nooksack
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110005,Upper Skagit
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110006,Sauk
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110007,Lower Skagit
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110008,Stillaguamish
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110009,Skykomish
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110010,Snoqualmie
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110011,Snohomish
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110012,Lake Washington
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110013,Duwamish
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110014,Puyallup
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110015,Nisqually
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110016,Deschutes
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110017,Skokomish
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110018,Hood Canal
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110019,Kitsap
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110020,Dungeness-Elwha
+3,76,Steelhead,Puget Sound,NMFS Threatened,17110021,Crescent-Hoko
+3,24,Steelhead,South-Central California Coast,NMFS Threatened,18060002,Pajaro
+3,24,Steelhead,South-Central California Coast,NMFS Threatened,18060004,Estrella
+3,24,Steelhead,South-Central California Coast,NMFS Threatened,18060005,Salinas
+3,24,Steelhead,South-Central California Coast,NMFS Threatened,18060006,Central Coastal
+3,24,Steelhead,South-Central California Coast,NMFS Threatened,18060011,Alisal-Elkhorn Sloughs
+3,24,Steelhead,South-Central California Coast,NMFS Threatened,18060012,Carmel
+3,25,Steelhead,Southern California,NMFS Endangered,18060013,Santa Barbara Coastal
+3,25,Steelhead,Southern California,NMFS Endangered,18070101,Ventura
+3,25,Steelhead,Southern California,NMFS Endangered,18070102,Santa Clara
+3,25,Steelhead,Southern California,NMFS Endangered,18070103,Calleguas
+3,25,Steelhead,Southern California,NMFS Endangered,18070104,Santa Monica Bay
+3,25,Steelhead,Southern California,NMFS Endangered,18070105,Los Angeles
+3,25,Steelhead,Southern California,NMFS Endangered,18070106,San Gabriel
+3,25,Steelhead,Southern California,NMFS Endangered,18070201,Seal Beach
+3,25,Steelhead,Southern California,NMFS Endangered,18070202,San Jacinto
+3,25,Steelhead,Southern California,NMFS Endangered,18070203,Santa Ana
+3,25,Steelhead,Southern California,NMFS Endangered,18070204,Newport Bay
+3,25,Steelhead,Southern California,NMFS Endangered,18070301,Aliso-San Onofre
+3,25,Steelhead,Southern California,NMFS Endangered,18070302,Santa Margarita
+3,25,Steelhead,Southern California,NMFS Endangered,18070303,San Luis Rey-Escondido
+3,25,Steelhead,Southern California,NMFS Endangered,18070304,San Diego
+3,25,Steelhead,Southern California,NMFS Endangered,18070305,Cottonwood-Tijuana
+3,25,Steelhead,Southern California,NMFS Endangered,18060007,Cuyama
+3,25,Steelhead,Southern California,NMFS Endangered,18060008,Santa Maria
+3,25,Steelhead,Southern California,NMFS Endangered,18060009,San Antonio
+3,25,Steelhead,Southern California,NMFS Endangered,18060010,Santa Ynez
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17030001,Upper Yakima
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17030002,Naches
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17030003,Lower Yakima
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070101,Middle Columbia-Lake Wallula
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070102,Walla Walla
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070103,Umatilla
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070104,Willow
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070105,Middle Columbia-Hood
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070106,Klickitat
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070201,Upper John Day
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070202,North Fork John Day
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070203,Middle Fork John Day
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070204,Lower John Day
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070306,Lower Deschutes
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17070307,Trout
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17080001,Lower Columbia-Sandy
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17080006,Lower Columbia
+3,75,Steelhead,Middle Columbia River,NMFS Threatened,17090012,Lower Willamette
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060101,Hells Canyon
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060102,Imnaha River
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060103,Lower Snake-Asotin
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060104,Upper Grande Ronde
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060105,Wallowa River
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060106,Lower Grande Ronde
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060107,Lower Snake-Tucannon
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060110,Lower Snake River
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060201,Upper Salmon
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060202,Pahsimeroi
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060203,Middle Salmon-Panther
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060204,Lemhi
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060205,Upper Middle Fork Salmon
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060206,Lower Middle Fork Salmon
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060207,Middle Salmon-Chamberlain
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060208,South Fork Salmon
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060209,Lower Salmon
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060210,Little Salmon River
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060301,Upper Selway
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060302,Lower Selway
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060303,Lochsa
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060304,Middle Fork Clearwater
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060305,South Fork Clearwater
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17060306,Clearwater
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17070101,Middle Columbia-Lake Wallula
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17070105,Middle Columbia-Hood
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17070106,Klickitat
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17070204,Lower John Day
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17070306,Lower Deschutes
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17080001,Lower Columbia-Sandy
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17080006,Lower Columbia
+3,27,Steelhead,Snake River Basin,NMFS Threatened,17090012,Lower Willamette
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17020008,Methow
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17020006,Okanogan
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17070105,Middle Columbia-Hood
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17080001,Lower Columbia-Sandy
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17070204,Lower John Day
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17090012,Lower Willamette
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17070101,Middle Columbia-Lake Wallula
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17080006,Lower Columbia
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17020016,Upper Columbia-Priest Rapids
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17020011,Wenatchee
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17020010,Upper Columbia-Entiat
+3,26,Steelhead,Upper Columbia River,NMFS Threatened,17020005,Chief Joseph
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090010,Tualatin
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090008,Yamhill
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17080001,Lower Columbia-Sandy
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17070105,Middle Columbia-Hood
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090004,McKenzie
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090001,Middle Fork Willamette
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090002,Coast Fork Willamette
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17080006,Lower Columbia
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090011,Clackamas
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090007,Middle Willamette
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090009,Molalla-Pudding
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090003,Upper Willamette
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090005,North Santiam
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090006,South Santiam
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+3,79,Steelhead,Upper Willamette River,NMFS Threatened,17090012,Lower Willamette
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18050005,Tomales-Drake Bays
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18050001,Suisun Bay
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18050004,San Francisco Bay
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18050002,San Pablo Bay
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18040003,San Joaquin Delta
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18050006,San Francisco Coastal South
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18020101,Sacramento-Lower Cow-Lower Clear
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18020104,Sacramento-Stone Corral
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18020103,Sacramento-Lower Thomes
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18020108,Lower Bear
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18020107,Lower Yuba
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18020106,Lower Feather
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18020125,Upper Yuba
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18040002,Middle San Joaquin-Lower Merced-Lower Stanislaus
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18020112,Sacramento-Upper Clear
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18020109,Lower Sacramento
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18010105,Lower Eel
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18010108,Big-Navarro-Garcia
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18010102,Mad-Redwood
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100106,Willapa
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100102,Queets-Quinault
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100105,Grays Harbor
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17080001,Lower Columbia-Sandy
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100207,Siltcoos
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100303,Umpqua
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100310,Lower Rogue
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100306,Sixes
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100305,Coquille
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100304,Coos
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100204,Siletz-Yaquina
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100101,Hoh-Quillayute
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17110021,Crescent-Hoko
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100202,Nehalem
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100203,Wilson-Trask-Nestucca
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,18010209,Lower Klamath River
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100312,Chetco
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17090012,Lower Willamette
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17080003,Lower Columbia-Clatskanie
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100201,Necanicum
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100206,Siuslaw
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17080006,Lower Columbia
+44,795,"Sturgeon, green",Southern DPS,NMFS Threatened,17100205,Alsea
+12,323,"Sturgeon, white",Kootenai River,NMFS Endangered,NULL,NULL
