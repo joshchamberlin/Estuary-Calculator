@@ -16,25 +16,24 @@ library(bslib) #UI themes
 options(shiny.maxRequestSize = 30*1024^2) #increase the file upload size to 30MB
 
 # Load Data -------------------------------
-delta <- read_sf("data/SnoDelta.shp")
-st_crs(SnoDelta)
+#delta <- read_sf("data/SnoDelta.shp")
+#st_crs(SnoDelta)
 
 
 # Create Map -------------------------------
 
 delta <- st_transform(delta, crs = '+proj=longlat +datum=WGS84')
 
-map <-leaflet() %>% 
+map <-leaflet() %>%
   addTiles(group = "Street") %>% #basemap
   addProviderTiles(providers$Esri.WorldImagery,
                    group = "Satellite") %>% #satelite base map
-  setView(lng =-122.214, lat = 48.024, zoom = 10) %>% 
+  setView(lng =-122.214, lat = 48.024, zoom = 10) %>%
   addPolygons(data = delta,
-              popup = "Snohomish Delta", group = "Snohomish Delta") %>% 
-  addPolygons(data = restoration) %>% 
+              popup = "Snohomish Delta", group = "Snohomish Delta") %>%
   addLayersControl(baseGroups = c("Satelite", "Street"),
                    overlayGroups = c("Snohomish Delta"),
-                   options = layersControlOptions(collapsed = F)) %>% 
+                   options = layersControlOptions(collapsed = F)) %>%
   addScaleBar()
 
 
@@ -92,15 +91,17 @@ ui <- dashboardPage(
     # -----------------------------
     # Map Tab
     tabItem(tabName = "design",
+            #Dropdown to select project type
              selectInput(inputId = " type",
                          label = "Select project type:",
-                         choices = c("Restoration", "Dike", "Tide Gate")),
-             fileInput("file1",
-                       "Upload Project Design (.shp)",
+                         choices = c("Select","Restoration", "Dike", "Tide Gate")),
+            #User file upload
+             fileInput(inputId = "mapdata",
+                       label = "Upload Project Design (.shp)",
                        multiple = T,
-                       accept = ".shp"),
+                       accept = c(".shp", ".dbf", ".sbn", ".sbx", ".shx", ".prj")),
              textInput("Design", "Design features"),
-             leafletOutput("map")
+             leafletOutput(outputId = "map", height = 900)
             ),
     
     #------------------------------
@@ -118,20 +119,49 @@ ui <- dashboardPage(
 ?ls
 # Server ----------------------------------
 server <- function(input, output, session) {
-  output$summary <- renderPrint({
-    dataset <- get(input$dataset, "package:datasets")
-    summary(dataset)
-  })
   
-  output$table <- renderTable({
-    dataset <- get(input$dataset, "package:datasets")
-    dataset
-  })
-  
-  output$map <- renderLeaflet({
+  #Save user's map upload to a directory and read it into the working environment
+  map <- reactive({
+    req(input$mapdata)
+    shpdf <- input$mapdata
+    tempdirname <- dirname(shpdf$datapath[1])
+    for (i in 1:nrow(shpdf)) {
+      file.rename(
+        shpdf$datapath[i],
+        paste0(tempdirname, "/", shpdf$name[i])
+      )
+    }
+    map <- read_sf(paste(tempdirname, shpdf$name[grep(pattern = ".shp", shpdf$name)],
+                         sep="/"))
+    
+    #change projection to be compatable with leaflet
+    map <- st_transform(map, crs = '+proj=longlat +datum=WGS84')
+    
     map
+  })
+
+
+  #create map with users uploaded file
+  output$map <- renderLeaflet({
+    if (is.null(data()) | is.null(map())) {
+      return(NULL)
+    }
+    map <- map()
+    
+    leaflet() %>%
+      addTiles(group = "Street") %>% #basemap
+      addProviderTiles(providers$Esri.WorldImagery,
+                       group = "Satellite") %>% #satelite base map
+      setView(lng =-122.214, lat = 48.024, zoom = 10) %>%
+      addPolygons(data = map,
+                  popup = "Project Site", group = "Project Site") %>%
+      addLayersControl(baseGroups = c("Satelite", "Street"),
+                       overlayGroups = c("Project Site"),
+                       options = layersControlOptions(collapsed = F)) %>%
+      addScaleBar()
+    
   })
 }
 
-# Run the application 
+# Run the application ------------------------ 
 shinyApp(ui = ui, server = server)

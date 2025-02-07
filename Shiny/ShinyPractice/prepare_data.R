@@ -8,13 +8,13 @@ library(leaflet)
 
 
 # Load Data -------------------------------
+#Polygon of the Snohomish Delta
 SnoDelta <- read_sf("data/SnoDelta.shp")
-
 st_crs(SnoDelta) #check CRS
 
-
+#Polygons of restoration footprints
 restoration <- read_sf("data/ProjectFootprints_SNO.shp")
-
+head(restoration)
 outlets <- read_sf("data/tc_dist_outlets_SNO.shp")
 
 current_hab <- read_sf("data/update_SNO.shp")
