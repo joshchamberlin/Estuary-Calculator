@@ -5,6 +5,7 @@
 # Load packages -------------------------
 library(shiny)
 library(shinydashboard)
+library(units)
 library(tidyverse)
 library(maps)
 library(sf)
@@ -19,25 +20,6 @@ options(shiny.maxRequestSize = 30*1024^2) #increase the file upload size to 30MB
 #delta <- read_sf("data/SnoDelta.shp")
 #st_crs(SnoDelta)
 
-
-# Create Map -------------------------------
-
-delta <- st_transform(delta, crs = '+proj=longlat +datum=WGS84')
-
-map <-leaflet() %>%
-  addTiles(group = "Street") %>% #basemap
-  addProviderTiles(providers$Esri.WorldImagery,
-                   group = "Satellite") %>% #satelite base map
-  setView(lng =-122.214, lat = 48.024, zoom = 10) %>%
-  addPolygons(data = delta,
-              popup = "Snohomish Delta", group = "Snohomish Delta") %>%
-  addLayersControl(baseGroups = c("Satelite", "Street"),
-                   overlayGroups = c("Snohomish Delta"),
-                   options = layersControlOptions(collapsed = F)) %>%
-  addScaleBar()
-
-
-map
 
 # User Interface ----------------------------  
 
@@ -89,24 +71,31 @@ ui <- dashboardPage(
             ),
     
     # -----------------------------
-    # Map Tab
+    # Project Design Tab
     tabItem(tabName = "design",
             #Dropdown to select project type
              selectInput(inputId = " type",
                          label = "Select project type:",
                          choices = c("Select","Restoration", "Dike", "Tide Gate")),
-            #User file upload
+            #User total area polygon file upload
              fileInput(inputId = "mapdata",
-                       label = "Upload Project Design (.shp)",
+                       label = "Upload Project Footprint (.shp)",
                        multiple = T,
                        accept = c(".shp", ".dbf", ".sbn", ".sbx", ".shx", ".prj")),
-             textInput("Design", "Design features"),
              leafletOutput(outputId = "map", height = 900)
             ),
     
     #------------------------------
     # HEA Tab
-    tabItem(tabName = "hea"
+    tabItem(tabName = "hea",
+            box(title = h3("Project Site Metrics"),
+                width = 12),
+            "Annual sediment load:",
+            textOutput(outputId = "sediment"),
+            "Mean annual freshwater discharge:",
+            textOutput(outputId = "discharge"),
+            "Area (acres)",
+            textOutput(outputId = "area")
             ),
     
     #-----------------------------
@@ -119,7 +108,8 @@ ui <- dashboardPage(
 ?ls
 # Server ----------------------------------
 server <- function(input, output, session) {
-  
+
+# Project Design Tab -------------------------------    
   #Save user's map upload to a directory and read it into the working environment
   map <- reactive({
     req(input$mapdata)
@@ -138,29 +128,59 @@ server <- function(input, output, session) {
     map <- st_transform(map, crs = '+proj=longlat +datum=WGS84')
     
     map
-  })
 
+  })
+  
 
   #create map with users uploaded file
   output$map <- renderLeaflet({
-    if (is.null(data()) | is.null(map())) {
-      return(NULL)
-    }
+
     map <- map()
+    
+    #get the bounding box so that the leaflet will rescale to the size of the uploaded polygon
+    bounds <- map %>% 
+      st_bbox() %>% 
+      as.character()
     
     leaflet() %>%
       addTiles(group = "Street") %>% #basemap
       addProviderTiles(providers$Esri.WorldImagery,
                        group = "Satellite") %>% #satelite base map
-      setView(lng =-122.214, lat = 48.024, zoom = 10) %>%
+      
+      #Setting the zoom
+      #setView(lng =-122.214, lat = 48.024, zoom = 10) %>%
+      fitBounds(bounds[1], bounds[2], bounds[3], bounds[4]) %>% 
+      
+      #User uploaded polygon
       addPolygons(data = map,
                   popup = "Project Site", group = "Project Site") %>%
-      addLayersControl(baseGroups = c("Satelite", "Street"),
-                       overlayGroups = c("Project Site"),
+    
+      #Interactive map features
+      addLayersControl(baseGroups = c("Satelite", "Street"), #switch map view
+                       overlayGroups = c("Project Site"), #toggle on and off the project polygon
                        options = layersControlOptions(collapsed = F)) %>%
       addScaleBar()
+  })
+  
+  #Intersect the uploaded polygon with the Snohomish Delta to extract metrics
+  intersection <- reactive(st_intersection(x=map(), y=SnoDelta))
+  
+  output$sediment <- renderText({
+    intersection()$AnnualSedi
+  })
+  
+  output$discharge <- renderText({
+    intersection()$MeanAnnual
     
   })
+  
+  output$area <- renderText({
+    area <- st_area(intersection())
+    set_units(area, "acres")
+  })
+
+
+  
 }
 
 # Run the application ------------------------ 
