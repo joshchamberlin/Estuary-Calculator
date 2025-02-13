@@ -17,8 +17,12 @@ library(bslib) #UI themes
 options(shiny.maxRequestSize = 30*1024^2) #increase the file upload size to 30MB
 
 # Load Data -------------------------------
-#delta <- read_sf("data/SnoDelta.shp")
-#st_crs(SnoDelta)
+SnoDelta <- read_sf("data/SnoDelta")
+st_crs(SnoDelta) #check CRS
+SnoDelta <- st_transform(SnoDelta, crs = '+proj=longlat +datum=WGS84')
+
+Hveg <- read_sf("data/Historic_Veg")
+Hveg <- st_transform(Hveg, crs = '+proj=longlat +datum=WGS84')
 
 
 # User Interface ----------------------------  
@@ -78,10 +82,15 @@ ui <- dashboardPage(
                          label = "Select project type:",
                          choices = c("Select","Restoration", "Dike", "Tide Gate")),
             #User total area polygon file upload
-             fileInput(inputId = "mapdata",
-                       label = "Upload Project Footprint (.shp)",
-                       multiple = T,
+             fileInput(inputId = "footprintdata",
+                       label = "Upload a shapefile of the project footprint",
+                       multiple = T, 
                        accept = c(".shp", ".dbf", ".sbn", ".sbx", ".shx", ".prj")),
+            #User channel polygon file upload
+            fileInput(inputId = "channeldata",
+                      label = "Upload a shapefile of the channel polygons",
+                      multiple = T,
+                      accept = c(".shp", ".dbf", ".sbn", ".sbx", ".shx", ".prj")),
              leafletOutput(outputId = "map", height = 900)
             ),
     
@@ -110,10 +119,11 @@ ui <- dashboardPage(
 server <- function(input, output, session) {
 
 # Project Design Tab -------------------------------    
+  #REACTIVE
   #Save user's map upload to a directory and read it into the working environment
-  map <- reactive({
-    req(input$mapdata)
-    shpdf <- input$mapdata
+  footprint <- reactive({
+    req(input$footprintdata)
+    shpdf <- input$footprintdata
     tempdirname <- dirname(shpdf$datapath[1])
     for (i in 1:nrow(shpdf)) {
       file.rename(
@@ -121,24 +131,38 @@ server <- function(input, output, session) {
         paste0(tempdirname, "/", shpdf$name[i])
       )
     }
-    map <- read_sf(paste(tempdirname, shpdf$name[grep(pattern = ".shp", shpdf$name)],
+    footprint <- read_sf(paste(tempdirname, shpdf$name[grep(pattern = ".shp", shpdf$name)],
                          sep="/"))
     
-    #change projection to be compatable with leaflet
-    map <- st_transform(map, crs = '+proj=longlat +datum=WGS84')
-    
-    map
+    #change projection to be compatible with leaflet
+    st_transform(footprint, crs = '+proj=longlat +datum=WGS84')
 
+  })
+  
+  channel <- reactive({
+    req(input$channeldata)
+    shpdf <- input$channeldata
+    tempdirname <- dirname(shpdf$datapath[1])
+    for (i in 1:nrow(shpdf)) {
+      file.rename(
+        shpdf$datapath[i],
+        paste0(tempdirname, "/", shpdf$name[i])
+      )
+    }
+    channel <- read_sf(paste(tempdirname, shpdf$name[grep(pattern = ".shp", shpdf$name)],
+                               sep="/"))
+    
+    #change projection to be compatible with leaflet
+    st_transform(channel, crs = '+proj=longlat +datum=WGS84')
+    
   })
   
 
   #create map with users uploaded file
   output$map <- renderLeaflet({
-
-    map <- map()
     
     #get the bounding box so that the leaflet will rescale to the size of the uploaded polygon
-    bounds <- map %>% 
+    bounds <- footprint() %>% 
       st_bbox() %>% 
       as.character()
     
@@ -148,39 +172,48 @@ server <- function(input, output, session) {
                        group = "Satellite") %>% #satelite base map
       
       #Setting the zoom
-      #setView(lng =-122.214, lat = 48.024, zoom = 10) %>%
       fitBounds(bounds[1], bounds[2], bounds[3], bounds[4]) %>% 
       
-      #User uploaded polygon
-      addPolygons(data = map,
+      #User uploaded footprint
+      addPolygons(data = footprint(), 
+                  color = "red", fill = F,
                   popup = "Project Site", group = "Project Site") %>%
+      
+      #User uploaded channel features
+      addPolygons(data = channel() %>% filter(FeatType == "Tidal Channel"),
+                  fill = "blue", stroke = F, fillOpacity = 1,
+                  popup = "Channels", group = "Channels") %>% 
     
       #Interactive map features
       addLayersControl(baseGroups = c("Satelite", "Street"), #switch map view
-                       overlayGroups = c("Project Site"), #toggle on and off the project polygon
+                       overlayGroups = c("Project Site", "Channels"), #toggle on and off the project polygon
                        options = layersControlOptions(collapsed = F)) %>%
       addScaleBar()
   })
-  
+
+#HEA TAB -----------------------------    
+  #REACTIVE
   #Intersect the uploaded polygon with the Snohomish Delta to extract metrics
-  intersection <- reactive(st_intersection(x=map(), y=SnoDelta))
+  intersection <- reactive(st_intersection(x=footprint(), y=SnoDelta))
   
+  #Extract sediment load
   output$sediment <- renderText({
     intersection()$AnnualSedi
   })
   
+  #Extract freshwater discharge
   output$discharge <- renderText({
     intersection()$MeanAnnual
     
   })
   
+  #Extract user project site area
   output$area <- renderText({
-    area <- st_area(intersection())
+    area <- st_area(footprint())
     set_units(area, "acres")
   })
 
-
-  
+#end of server
 }
 
 # Run the application ------------------------ 
