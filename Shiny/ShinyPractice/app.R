@@ -20,9 +20,11 @@ library(rsconnect) #for deplying app
 options(shiny.maxRequestSize = 30*1024^2) #increase the file upload size to 30MB
 
 # Deploying app to Posit -----------------
-list.files()
-writeManifest()
-list.files()
+#re-run these lines to update app for the connect site
+#Connect Git-backed publishing does not support Git Large File Storage (LFS)
+# list.files()
+# writeManifest()
+# list.files()
 
 # Load Data -------------------------------
 site <- read_sf("data/CedarGroveMitigation")
@@ -33,10 +35,9 @@ l_connect <- read_sf("data/Landscape_Connectivity")
 # Source dependent scripts
 source(paste(getwd(), "/code/landscape_connectivity.R", sep = ""))
 
-# Check CRS
+# Unify CRS
 st_crs(SnoDelta) #check CRS
 SnoDelta <- st_transform(SnoDelta, crs = st_crs(site))
-
 
 Hveg <- st_transform(Hveg, crs = st_crs(site)) %>% 
   st_make_valid()
@@ -249,7 +250,7 @@ server <- function(input, output, session) {
     startingline <- st_collection_extract(st_split(l_connect, point), "LINESTRING") %>% 
                                filter(fid == point$fid) %>% #This filters for the line segement that we sliced above
                                slice(2) #this drops one of the segments... but I'm not sure if this will work 100% of the time?
-    c1 <- startingline$lngth_m * startingline$bi_order
+    c1 <- st_length(startingline) * startingline$bi_order
     i1 <- startingline$i
     connectivity(l_connect, i1, c1)
     

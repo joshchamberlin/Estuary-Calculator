@@ -1,5 +1,5 @@
 #Catalina
-# This script is for practicing geocomputation. 
+# This script is for practicing geocomputation. It's mostly junk code.
 #Last edited: 2/5
 
 library(tidyverse)

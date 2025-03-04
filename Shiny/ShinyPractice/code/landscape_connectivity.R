@@ -1,5 +1,6 @@
 #LANDSCAPE CONNECTIVITY LAYER
 #Last edited 3/3 by Catalina
+#NOTE: I forgot to add a length calculation for segment one
 
 # Load libraries
 library(tidyverse)
@@ -23,8 +24,8 @@ connectivity <- function(l_connect, i1, c1){
   if(nrow(line) == 0){ #this will break the loop if you don't get a matching i and j value (when you hit the furthest upstream segment)
     break}
   
-  line <- line %>%  #this selects the path with the lower (better) connectivity score if you have multiple upstream paths
-    filter(c == min(c))
+  line <- line %>%  #this selects the path with the higher connectivity score if you have multiple upstream paths
+    filter(c == max(c))
   
   df[x+1,1] <- line$i
   df[x+1,2] <- line$c
