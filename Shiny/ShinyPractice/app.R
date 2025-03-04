@@ -4,11 +4,13 @@
 
 # Load packages -------------------------
 library(shiny)
+  shinyOptions(cache = cachem::cache_disk("./app_cache/cache/")) #Posit recommends caching to disk
 library(shinydashboard)
 library(units)
 library(tidyverse)
 library(maps)
 library(sf)
+library(lwgeom)
 library(readxl)
 library(leaflet)
 library(RColorBrewer)
@@ -17,13 +19,23 @@ library(bslib) #UI themes
 options(shiny.maxRequestSize = 30*1024^2) #increase the file upload size to 30MB
 
 # Load Data -------------------------------
+site <- read_sf("data/CedarGroveMitigation")
 SnoDelta <- read_sf("data/SnoDelta")
-st_crs(SnoDelta) #check CRS
-SnoDelta <- st_transform(SnoDelta, crs = '+proj=longlat +datum=WGS84')
-
 Hveg <- read_sf("data/Historic_Veg")
-Hveg <- st_transform(Hveg, crs = '+proj=longlat +datum=WGS84')
+l_connect <- read_sf("data/Landscape_Connectivity")
 
+# Source dependent scripts
+source(paste(getwd(), "/code/landscape_connectivity.R", sep = ""))
+
+# Check CRS
+st_crs(SnoDelta) #check CRS
+SnoDelta <- st_transform(SnoDelta, crs = st_crs(site))
+
+
+Hveg <- st_transform(Hveg, crs = st_crs(site)) %>% 
+  st_make_valid()
+
+l_connect <- st_transform(l_connect, crs = st_crs(site)) #for some reason using the l_connect crs was messing up my code
 
 # User Interface ----------------------------  
 
@@ -91,7 +103,8 @@ ui <- dashboardPage(
                       label = "Upload a shapefile of the channel polygons",
                       multiple = T,
                       accept = c(".shp", ".dbf", ".sbn", ".sbx", ".shx", ".prj")),
-             leafletOutput(outputId = "map", height = 900)
+            leafletOutput(outputId = "map", height = 900),
+            plotOutput(outputId = "habitat")
             ),
     
     #------------------------------
@@ -104,7 +117,11 @@ ui <- dashboardPage(
             "Mean annual freshwater discharge:",
             textOutput(outputId = "discharge"),
             "Area (acres)",
-            textOutput(outputId = "area")
+            textOutput(outputId = "area"),
+            "Vegetation Habitat Type:",
+            textOutput(outputId = "veg"),
+            "Landscape Connectivity:",
+            textOutput(outputId = "lcon")
             ),
     
     #-----------------------------
@@ -114,7 +131,6 @@ ui <- dashboardPage(
 ))
 
 
-?ls
 # Server ----------------------------------
 server <- function(input, output, session) {
 
@@ -134,8 +150,8 @@ server <- function(input, output, session) {
     footprint <- read_sf(paste(tempdirname, shpdf$name[grep(pattern = ".shp", shpdf$name)],
                          sep="/"))
     
-    #change projection to be compatible with leaflet
-    st_transform(footprint, crs = '+proj=longlat +datum=WGS84')
+    #change projection to match landscape connectivity layer
+    st_transform(footprint, crs = st_crs(site))
 
   })
   
@@ -153,7 +169,7 @@ server <- function(input, output, session) {
                                sep="/"))
     
     #change projection to be compatible with leaflet
-    st_transform(channel, crs = '+proj=longlat +datum=WGS84')
+    st_transform(channel, crs = st_crs(site))
     
   })
   
@@ -163,6 +179,7 @@ server <- function(input, output, session) {
     
     #get the bounding box so that the leaflet will rescale to the size of the uploaded polygon
     bounds <- footprint() %>% 
+      st_transform(crs = '+proj=longlat +datum=WGS84') %>% 
       st_bbox() %>% 
       as.character()
     
@@ -175,12 +192,12 @@ server <- function(input, output, session) {
       fitBounds(bounds[1], bounds[2], bounds[3], bounds[4]) %>% 
       
       #User uploaded footprint
-      addPolygons(data = footprint(), 
+      addPolygons(data = footprint() %>% st_transform(crs = '+proj=longlat +datum=WGS84'), #transforming CRS to be compatible with leaflet
                   color = "red", fill = F,
                   popup = "Project Site", group = "Project Site") %>%
       
       #User uploaded channel features
-      addPolygons(data = channel() %>% filter(FeatType == "Tidal Channel"),
+      addPolygons(data = channel() %>% filter(FeatType == "Tidal Channel") %>% st_transform(crs = '+proj=longlat +datum=WGS84'),
                   fill = "blue", stroke = F, fillOpacity = 1,
                   popup = "Channels", group = "Channels") %>% 
     
@@ -191,11 +208,49 @@ server <- function(input, output, session) {
       addScaleBar()
   })
 
-#HEA TAB -----------------------------    
-  #REACTIVE
+
+  #THIS CODE IS NOT WORKING
+  # #I think this base r method isn't working with reactive elements
+  # hab_df <- reactive({
+  #   hab_area[nrow(hab_area)+1, 1] = "HabitatVeg()$Veg"
+  #   hab_area[nrow(hab_area), 2] = st_area(footprint())
+  #   hab_area[nrow(hab_area), 3] = "Restoration"
+  # })
+  # 
+  # 
+  # output$habitat <- renderPlot({
+  #   ggplot(hab_df(), aes(fill = time, y = area, x = Veg))+
+  #     geom_bar(position = 'stack', stat = 'identity')+
+  #     theme_classic()+
+  #     ggtitle("Availability of Habitat in the Snohomish Delta")
+  # })
+
+# HEA TAB -----------------------------    
+  # REACTIVE SEGMENTS
   #Intersect the uploaded polygon with the Snohomish Delta to extract metrics
   intersection <- reactive(st_intersection(x=footprint(), y=SnoDelta))
   
+  #Vegetation
+  HabitatVeg <- reactive({st_intersection(x = footprint(), y = Hveg)})
+  
+  #Prep the footprint for landscape connectivity calculation  -------------
+  landconnect <- reactive({
+    line <- st_nearest_points(footprint(), st_union(l_connect))
+    
+    point <- st_intersection(l_connect, line) %>% 
+      st_as_sf()
+    
+    startingline <- st_collection_extract(st_split(l_connect, point), "LINESTRING") %>% 
+                               filter(fid == point$fid) %>% #This filters for the line segement that we sliced above
+                               slice(2) #this drops one of the segments... but I'm not sure if this will work 100% of the time?
+    c1 <- startingline$lngth_m * startingline$bi_order
+    i1 <- startingline$i
+    connectivity(l_connect, i1, c1)
+    
+  })
+  
+  
+  # OUTPUTS
   #Extract sediment load
   output$sediment <- renderText({
     intersection()$AnnualSedi
@@ -211,6 +266,14 @@ server <- function(input, output, session) {
   output$area <- renderText({
     area <- st_area(footprint())
     set_units(area, "acres")
+  })
+  
+  output$veg <- renderText({
+    HabitatVeg()$Veg
+  })
+  
+  output$lcon <-renderText({
+    landconnect()
   })
 
 #end of server
