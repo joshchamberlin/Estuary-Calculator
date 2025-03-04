@@ -15,8 +15,14 @@ library(readxl)
 library(leaflet)
 library(RColorBrewer)
 library(bslib) #UI themes
+library(rsconnect) #for deplying app
 
 options(shiny.maxRequestSize = 30*1024^2) #increase the file upload size to 30MB
+
+# Deploying app to Posit -----------------
+list.files()
+writeManifest()
+list.files()
 
 # Load Data -------------------------------
 site <- read_sf("data/CedarGroveMitigation")

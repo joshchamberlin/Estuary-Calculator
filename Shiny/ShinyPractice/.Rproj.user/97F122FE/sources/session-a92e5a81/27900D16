@@ -3,7 +3,7 @@
     "path": "~/GitHub/Estuary-Calculator/Shiny/ShinyPractice/app.R",
     "project_path": "app.R",
     "type": "r_source",
-    "hash": "206929160",
+    "hash": "3655138759",
     "contents": "",
     "dirty": false,
     "created": 1738280320567.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "201,62",
-        "scrollLine": "174"
+        "cursorPosition": "26,0",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1741124861,
+    "lastKnownWriteTime": 1741126697,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1741124861104,
+    "last_content_update": 1741126697660,
     "read_only": false,
     "read_only_alternatives": []
 }
