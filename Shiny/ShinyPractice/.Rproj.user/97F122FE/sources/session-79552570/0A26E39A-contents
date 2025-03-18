@@ -47,38 +47,38 @@ connectivity <- function(l_connect, i1, c1){
 
 
 # OLD CODE USED FOR FUNCTION DEVELOPMENT --------------------------
-
-# Load Data -----------
-l_connect <- read_sf("data/Landscape_Connectivity")
-site <- read_sf("data/CedarGroveMitigation")
-st_crs(site)
-l_connect <- st_transform(l_connect, crs = st_crs(site))
-site <- st_transform(site, crs = st_crs(l_connect))
-
-#Prepping the project site -------------
-#Produce a line between the shortest distance between the site and the connectivity line
-#requires unionizing the landscape connectivity line
-line <- st_nearest_points(site, st_union(l_connect))
-#Turn the line into a point at the intersection
-point <- st_intersection(l_connect, line) %>%
-  st_as_sf()
-#check that it intersects
-st_intersects(point, l_connect, sparse = F)
-#split the line by the intersect
-startingline <- st_collection_extract(st_split(l_connect, point), "LINESTRING") %>%
-  filter(fid == point$fid) %>% #This filters for the line segement that we sliced above
-  slice(2) #this drops one of the segments... but I'm not sure if this will work 100% of the time?
-#------------
-#Extracting the data needed to run the function
-#first line connectivity score
-c1 <- startingline$lngth_m * startingline$bi_order
-
-#ID the first i value
-i1 <- startingline$i
-
-
-# Test Function ----------------------
-connectivity(l_connect, i1, c1)
+# 
+# # Load Data -----------
+# l_connect <- read_sf("data/Landscape_Connectivity")
+# site <- read_sf("data/CedarGroveMitigation")
+# st_crs(site)
+# l_connect <- st_transform(l_connect, crs = st_crs(site))
+# site <- st_transform(site, crs = st_crs(l_connect))
+# 
+# #Prepping the project site -------------
+# #Produce a line between the shortest distance between the site and the connectivity line
+# #requires unionizing the landscape connectivity line
+# line <- st_nearest_points(site, st_union(l_connect))
+# #Turn the line into a point at the intersection
+# point <- st_intersection(l_connect, line) %>%
+#   st_as_sf()
+# #check that it intersects
+# st_intersects(point, l_connect, sparse = F)
+# #split the line by the intersect
+# startingline <- st_collection_extract(st_split(l_connect, point), "LINESTRING") %>%
+#   filter(fid == point$fid) %>% #This filters for the line segement that we sliced above
+#   slice(2) #this drops one of the segments... but I'm not sure if this will work 100% of the time?
+# #------------
+# #Extracting the data needed to run the function
+# #first line connectivity score
+# c1 <- startingline$lngth_m * startingline$bi_order
+# 
+# #ID the first i value
+# i1 <- startingline$i
+# 
+# 
+# # Test Function ----------------------
+# connectivity(l_connect, i1, c1)
 
 # Plot check --------------------
 #ggplot() +
