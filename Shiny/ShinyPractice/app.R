@@ -18,7 +18,7 @@ library(bslib) #UI themes
 library(rsconnect) #for deplying app
 
 options(shiny.maxRequestSize = 30*1024^2) #increase the file upload size to 30MB
-
+#changing things
 # Deploying app to Posit -----------------
 #re-run these lines to update app for the connect site
 #Connect Git-backed publishing does not support Git Large File Storage (LFS)
