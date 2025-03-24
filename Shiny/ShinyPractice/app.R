@@ -34,6 +34,7 @@ l_connect <- read_sf("data/Landscape_Connectivity")
 
 # Source dependent scripts
 source(paste(getwd(), "/code/landscape_connectivity.R", sep = ""))
+source(paste(getwd(), "/code/vegetation.R", sep = ""))
 
 # Unify CRS
 st_crs(SnoDelta) #check CRS
@@ -42,8 +43,9 @@ SnoDelta <- st_transform(SnoDelta, crs = st_crs(site))
 Hveg <- st_transform(Hveg, crs = st_crs(site)) %>% 
   st_make_valid()
 
-l_connect <- st_transform(l_connect, crs = st_crs(site)) #for some reason using the l_connect crs was messing up my code
+l_connect <- st_transform(l_connect, crs = st_crs(site)) 
 
+#################################################
 # User Interface ----------------------------  
 
 ui <- dashboardPage(
@@ -117,7 +119,8 @@ ui <- dashboardPage(
             ),
     #--------------------------------
     # Metrics Tab
-    tabItem(tabName = "site"
+    tabItem(tabName = "site",
+            plotOutput(outputId = "vegplot")
             ),
     tabItem(tabName = "landscape"
             ),
@@ -146,6 +149,7 @@ ui <- dashboardPage(
 ))
 
 
+###############################################
 # Server ----------------------------------
 server <- function(input, output, session) {
 
@@ -223,6 +227,16 @@ server <- function(input, output, session) {
       addScaleBar()
   })
 
+# METRICS TAB --------------------------
+  #Site Metrics
+  output$vegplot <- renderPlot({
+    habitat_change_plot
+  })
+  
+  
+  #Landscape Metrics
+  
+  
 
 # HEA TAB -----------------------------    
   # REACTIVE SEGMENTS
@@ -279,5 +293,6 @@ server <- function(input, output, session) {
 #end of server
 }
 
+###############################################
 # Run the application ------------------------ 
 shinyApp(ui = ui, server = server)

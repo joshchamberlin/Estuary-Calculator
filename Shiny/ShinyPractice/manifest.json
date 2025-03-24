@@ -4002,10 +4002,10 @@
   },
   "files": {
     "app.R": {
-      "checksum": "b28b23e7cda197661d91fd25ccb7467d"
+      "checksum": "76a70c551a3c38b495cc2ef19afeac32"
     },
     "code/landscape_connectivity.R": {
-      "checksum": "9edcb825c75e5671c46f607f0b27ffcd"
+      "checksum": "dcdbb656c404a90dfe0b945f197eae9f"
     },
     "data/CedarGroveMitigation/CedarGroveMitigation.cpg": {
       "checksum": "ae3b3df9970b49b6523e608759bc957d"
@@ -4257,7 +4257,7 @@
       "checksum": "f95e0b4fdc5e08655d4861d2a325e5ff"
     },
     "prepare_data.R": {
-      "checksum": "46fd3b56be1544303fa2f147ab255422"
+      "checksum": "64068edc50f0ca1d27813edda0c5ea88"
     },
     "WWW/conceptualdiagram.png": {
       "checksum": "fe23fbdb2b16e85d6fd1d19f441c3b16"

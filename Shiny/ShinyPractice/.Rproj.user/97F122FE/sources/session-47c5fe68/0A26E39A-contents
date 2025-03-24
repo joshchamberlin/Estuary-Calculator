@@ -1,6 +1,6 @@
 #LANDSCAPE CONNECTIVITY LAYER
 #Last edited 3/3 by Catalina
-#NOTE: I forgot to add a length calculation for segment one
+#NOTES: 
 
 # Load libraries
 library(tidyverse)
@@ -35,6 +35,10 @@ connectivity <- function(l_connect, i1, c1){
   score <- 1 / sum(df$cvalue) #calculate the connectivity score
   score
 }
+
+
+
+
 
 
 
