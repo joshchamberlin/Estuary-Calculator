@@ -18,8 +18,7 @@ library(bslib) #UI themes
 library(rsconnect) #for deplying app
 
 options(shiny.maxRequestSize = 30*1024^2) #increase the file upload size to 30MB
-#changing things
-#more changes
+
 # Deploying app to Posit -----------------
 #re-run these lines to update app for the connect site
 #Connect Git-backed publishing does not support Git Large File Storage (LFS)
@@ -54,13 +53,16 @@ ui <- dashboardPage(
   #Menu Outline
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Home", tabName = "home", icon = icon("home"), startExpanded = T, 
+      menuItem("Home", tabName = "home", icon = icon("home"), startExpanded = F, 
                menuSubItem("Welcome", tabName = "welcome"),
                menuSubItem("How it works", tabName = "how2"),
                menuSubItem("Background and Purpose", tabName = "background"),
                menuSubItem("Glossary", tabName = "gloss"),
                menuSubItem("Uses and Limitations", tabName = "disclaimer")), 
-      menuItem("Project Design", tabName = "design", icon = icon("globe", lib = "glyphicon")), 
+      menuItem("Project Design", tabName = "design", icon = icon("globe", lib = "glyphicon")),
+      menuItem("Metrics", tabName = "metrics", icon = icon("cog", lib = "glyphicon"), startExpanded = F,
+               menuSubItem("Site Metrics", tabName = "site",),
+               menuSubItem("Landscape Metrics", tabName = "landscape")),
       menuItem("Habitat Equivalency Analysis", tabName = "hea", icon = icon("hourglass", lib = "glyphicon")),
       menuItem("About Us", tabName = "about", icon = icon("info-sign", lib = "glyphicon"))
     )
@@ -111,8 +113,13 @@ ui <- dashboardPage(
                       label = "Upload a shapefile of the channel polygons",
                       multiple = T,
                       accept = c(".shp", ".dbf", ".sbn", ".sbx", ".shx", ".prj")),
-            leafletOutput(outputId = "map", height = 900),
-            plotOutput(outputId = "habitat")
+            leafletOutput(outputId = "map", height = 900)
+            ),
+    #--------------------------------
+    # Metrics Tab
+    tabItem(tabName = "site"
+            ),
+    tabItem(tabName = "landscape"
             ),
     
     #------------------------------
@@ -217,22 +224,6 @@ server <- function(input, output, session) {
   })
 
 
-  #THIS CODE IS NOT WORKING
-  # #I think this base r method isn't working with reactive elements
-  # hab_df <- reactive({
-  #   hab_area[nrow(hab_area)+1, 1] = "HabitatVeg()$Veg"
-  #   hab_area[nrow(hab_area), 2] = st_area(footprint())
-  #   hab_area[nrow(hab_area), 3] = "Restoration"
-  # })
-  # 
-  # 
-  # output$habitat <- renderPlot({
-  #   ggplot(hab_df(), aes(fill = time, y = area, x = Veg))+
-  #     geom_bar(position = 'stack', stat = 'identity')+
-  #     theme_classic()+
-  #     ggtitle("Availability of Habitat in the Snohomish Delta")
-  # })
-
 # HEA TAB -----------------------------    
   # REACTIVE SEGMENTS
   #Intersect the uploaded polygon with the Snohomish Delta to extract metrics
@@ -253,6 +244,7 @@ server <- function(input, output, session) {
                                slice(2) #this drops one of the segments... but I'm not sure if this will work 100% of the time?
     c1 <- st_length(startingline) * startingline$bi_order
     i1 <- startingline$i
+    #this function is from the dependency script landscape_connectivity.R
     connectivity(l_connect, i1, c1)
     
   })
