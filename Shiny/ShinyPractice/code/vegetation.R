@@ -5,6 +5,7 @@
 # Load libraries
 library(tidyverse)
 library(sf)
+library(leaflet)
 
 #Load Data ----------------
 #site
@@ -75,6 +76,26 @@ habitat_change_plot <- ggplot()+
   scale_color_manual(name = "Period",
                      breaks = c("Historic", "Current"),
                      values = c("Historic" = "lightblue", "Current" = "darkblue"))
-  
 
+
+#Create interactive map that shows change in habitat condition
+#Color Palette
+pal <- colorFactor(
+  palette = "Greens",
+  domain = Hveg$Veg)
+
+habitat_change_leaflet <- leaflet() %>% 
+  addProviderTiles(providers$Esri.WorldImagery,
+                   group = "Satellite") %>% 
+  addPolygons(data = wetlands %>% st_transform(crs = '+proj=longlat +datum=WGS84'), 
+              group = "Current Habitat",
+              color = ~pal(Veg), fillOpacity = 1, stroke = F) %>% 
+  addPolygons(data = Hveg %>% st_transform(crs = '+proj=longlat +datum=WGS84'),
+              group = "Historic Habitat",
+              color = ~pal(Veg), fillOpacity = 1, stroke = F) %>% 
+  addLayersControl(overlayGroups = c("Current Habitat", "Historic Habitat"))
+
+
+ggplot()+
+  geom_sf(data = Hveg, aes(fill = Veg))
 
