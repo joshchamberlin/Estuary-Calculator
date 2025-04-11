@@ -20,11 +20,12 @@ library(rsconnect) #for deplying app
 options(shiny.maxRequestSize = 30*1024^2) #increase the file upload size to 30MB
 
 # Deploying app to Posit -----------------
-#re-run these lines to update app for the connect site
-#Connect Git-backed publishing does not support Git Large File Storage (LFS)
- list.files()
- writeManifest()
- list.files()
+#I used these three lines to deploy the app. I don't think it needs to be re-run.
+#it should auto update
+#Note: Connect Git-backed publishing does not support Git Large File Storage (LFS)
+# list.files()
+# writeManifest()
+# list.files()
 
 # Load Data -------------------------------
 site <- read_sf("data/CedarGroveMitigation")
@@ -77,7 +78,7 @@ ui <- dashboardPage(
   # Home Tab
   tabItems(
     tabItem(tabName = "welcome",
-            box(title = h3("Welcome to the Estuary Habitat Values App for ESA Section 7 Consultations"),
+            box(title = h3("TESING THAT APP IS UPDATING Welcome to the Estuary Habitat Values App for ESA Section 7 Consultations"),
                 width = 12),
             br(),
             "This is the landing page. We can provide a brief summary and link to reference documents.",
