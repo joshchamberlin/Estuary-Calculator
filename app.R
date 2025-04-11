@@ -28,19 +28,20 @@ options(shiny.maxRequestSize = 30*1024^2) #increase the file upload size to 30MB
 
 # Load Data -------------------------------
 site <- read_sf("data/CedarGroveMitigation")
-SnoDelta <- read_sf("data/SnoDelta")
-Hveg <- read_sf("data/Historic_Veg")
+sno_delta <- read_sf("data/SnoDelta")
+h_veg <- read_sf("data/Historic_Veg")
 l_connect <- read_sf("data/Landscape_Connectivity")
 
 # Source dependent scripts
 source(paste(getwd(), "/code/landscape_connectivity.R", sep = ""))
 source(paste(getwd(), "/code/vegetation.R", sep = ""))
+source(paste(getwd(), "/code/elevation.R", sep = ""))
 
 # Unify CRS
-st_crs(SnoDelta) #check CRS
-SnoDelta <- st_transform(SnoDelta, crs = st_crs(site))
+st_crs(sno_delta) #check CRS
+sno_delta <- st_transform(sno_delta, crs = st_crs(site))
 
-Hveg <- st_transform(Hveg, crs = st_crs(site)) %>% 
+h_veg <- st_transform(h_veg, crs = st_crs(site)) %>% 
   st_make_valid()
 
 l_connect <- st_transform(l_connect, crs = st_crs(site)) 
@@ -58,12 +59,15 @@ ui <- dashboardPage(
       menuItem("Home", tabName = "home", icon = icon("home"), startExpanded = F, 
                menuSubItem("Welcome", tabName = "welcome"),
                menuSubItem("How it works", tabName = "how2"),
-               menuSubItem("Background and Purpose", tabName = "background"),
+               menuSubItem("Background and Purpose", tabName = "back"),
                menuSubItem("Glossary", tabName = "gloss"),
                menuSubItem("Uses and Limitations", tabName = "disclaimer")), 
-      menuItem("Project Design", tabName = "design", icon = icon("globe", lib = "glyphicon")),
+      menuItem("Project Design", tabName = "design", icon = icon("globe", lib = "glyphicon"), startExpanded = F,
+               menuSubItem("Restoration Project", "restoration"),
+               menuSubItem("Tide Gate Project", "tide_gate"),
+               menuSubItem("Dike/Levee Project", "dike")),
       menuItem("Metrics", tabName = "metrics", icon = icon("cog", lib = "glyphicon"), startExpanded = F,
-               menuSubItem("Site Metrics", tabName = "site",),
+               menuSubItem("Site Metrics", tabName = "site"),
                menuSubItem("Landscape Metrics", tabName = "landscape")),
       menuItem("Habitat Equivalency Analysis", tabName = "hea", icon = icon("hourglass", lib = "glyphicon")),
       menuItem("About Us", tabName = "about", icon = icon("info-sign", lib = "glyphicon"))
@@ -91,7 +95,7 @@ ui <- dashboardPage(
                        ),
     tabItem(tabName = "how2"
             ),
-    tabItem(tabName = "background"
+    tabItem(tabName = "back"
             ),
     tabItem(tabName = "gloss"
             ),
@@ -100,28 +104,30 @@ ui <- dashboardPage(
     
     # -----------------------------
     # Project Design Tab
-    tabItem(tabName = "design",
+    tabItem(tabName = "restoration",
             #Dropdown to select project type
              selectInput(inputId = " type",
                          label = "Select project type:",
-                         choices = c("Select","Restoration", "Dike", "Tide Gate")),
+                         choices = c("Select","Restoration")),
             #User total area polygon file upload
-             fileInput(inputId = "footprintdata",
+             fileInput(inputId = "footprint_data",
                        label = "Upload a shapefile of the project footprint",
                        multiple = T, 
                        accept = c(".shp", ".dbf", ".sbn", ".sbx", ".shx", ".prj")),
             #User channel polygon file upload
-            fileInput(inputId = "channeldata",
+            fileInput(inputId = "channel_data",
                       label = "Upload a shapefile of the channel polygons",
                       multiple = T,
                       accept = c(".shp", ".dbf", ".sbn", ".sbx", ".shx", ".prj")),
             leafletOutput(outputId = "map", height = 900)
             ),
+    tabItem(tabName = "tide_gate"),
+    tabItem(tabName = "dike"),
     #--------------------------------
     # Metrics Tab
     tabItem(tabName = "site",
-            leafletOutput(outputId = "veginteract"),
-            plotOutput(outputId = "vegplot")
+            leafletOutput(outputId = "veg_interact"),
+            plotOutput(outputId = "veg_plot")
             ),
     tabItem(tabName = "landscape"
             ),
@@ -140,7 +146,7 @@ ui <- dashboardPage(
             "Vegetation Habitat Type:",
             textOutput(outputId = "veg"),
             "Landscape Connectivity:",
-            textOutput(outputId = "lcon")
+            textOutput(outputId = "l_connect")
             ),
     
     #-----------------------------
@@ -158,8 +164,8 @@ server <- function(input, output, session) {
   #REACTIVE
   #Save user's map upload to a directory and read it into the working environment
   footprint <- reactive({
-    req(input$footprintdata)
-    shpdf <- input$footprintdata
+    req(input$footprint_data)
+    shpdf <- input$footprint_data
     tempdirname <- dirname(shpdf$datapath[1])
     for (i in 1:nrow(shpdf)) {
       file.rename(
@@ -176,8 +182,8 @@ server <- function(input, output, session) {
   })
   
   channel <- reactive({
-    req(input$channeldata)
-    shpdf <- input$channeldata
+    req(input$channel_data)
+    shpdf <- input$channel_data
     tempdirname <- dirname(shpdf$datapath[1])
     for (i in 1:nrow(shpdf)) {
       file.rename(
@@ -230,11 +236,11 @@ server <- function(input, output, session) {
 
 # METRICS TAB --------------------------
   #Site Metrics
-  output$veginteract <- renderLeaflet({
+  output$veg_interact <- renderLeaflet({
     habitat_change_leaflet
   })
   
-  output$vegplot <- renderPlot({
+  output$veg_plot <- renderPlot({
     habitat_change_plot
   })
 
@@ -246,10 +252,10 @@ server <- function(input, output, session) {
 # HEA TAB -----------------------------    
   # REACTIVE SEGMENTS
   #Intersect the uploaded polygon with the Snohomish Delta to extract metrics
-  intersection <- reactive(st_intersection(x=footprint(), y=SnoDelta))
+  intersection <- reactive(st_intersection(x=footprint(), y=sno_delta))
   
   #Vegetation
-  HabitatVeg <- reactive({st_intersection(x = footprint(), y = Hveg)})
+  HabitatVeg <- reactive({st_intersection(x = footprint(), y = h_veg)})
   
   #Prep the footprint for landscape connectivity calculation  -------------
   landconnect <- reactive({
@@ -267,7 +273,7 @@ server <- function(input, output, session) {
     connectivity(l_connect, i1, c1)
     
   })
-  
+
   
   # OUTPUTS
   #Extract sediment load
@@ -291,7 +297,7 @@ server <- function(input, output, session) {
     HabitatVeg()$Veg
   })
   
-  output$lcon <-renderText({
+  output$l_connect <-renderText({
     landconnect()
   })
 
