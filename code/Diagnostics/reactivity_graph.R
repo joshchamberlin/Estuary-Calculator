@@ -1,6 +1,7 @@
 #Reactivity Graph
 #Last edited 4/11 by Catalina
 #NOTES: This script is for looking at the apps reactivity graph
+#here's a resource on this package https://mastering-shiny.org/reactive-graph.html
 
 #This is a really cool tool.
 
