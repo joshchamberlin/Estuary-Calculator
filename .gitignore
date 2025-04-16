@@ -1,4 +1,5 @@
-.Rproj.user
+.Rproj.user/
 .Rhistory
 .RData
 .Ruserdata
+/data/large_files_ignore/
