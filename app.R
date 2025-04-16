@@ -72,7 +72,7 @@ ui <- dashboardPage(
   # Home Tab
   tabItems(
     tabItem(tabName = "welcome",
-            box(title = h3("TESING THAT APP IS UPDATING Welcome to the Estuary Habitat Values App for ESA Section 7 Consultations"),
+            box(title = h3("Welcome to the Estuary Habitat Values App for ESA Section 7 Consultations"),
                 width = 12),
             br(),
             "This is the landing page. We can provide a brief summary and link to reference documents.",

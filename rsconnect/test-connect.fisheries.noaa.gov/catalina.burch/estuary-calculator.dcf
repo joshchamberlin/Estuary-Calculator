@@ -1,0 +1,12 @@
+name: estuary-calculator
+title: Estuary-Calculator
+username: catalina.burch
+account: catalina.burch
+server: test-connect.fisheries.noaa.gov
+hostUrl: https://test-connect.fisheries.noaa.gov/__api__
+appId: 367
+bundleId: 1786
+url: https://test-connect.fisheries.noaa.gov/content/0fb2622a-b5a9-4401-b098-38e967a813a7/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
