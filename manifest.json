@@ -2682,6 +2682,34 @@
         "Archs": "x64"
       }
     },
+    "reactlog": {
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com",
+      "description": {
+        "Package": "reactlog",
+        "Title": "Reactivity Visualizer for 'shiny'",
+        "Version": "1.1.1",
+        "Authors@R": "c(\n      person(\n        \"Barret\", \"Schloerke\", email = \"barret@rstudio.com\", role = c(\"aut\", \"cre\"),\n        comment = c(ORCID = \"0000-0001-9986-114X\")\n      ),\n      person(\"Joe\", \"Cheng\", email = \"joe@rstudio.com\", role = c(\"ctb\")),\n      person(\"RStudio\", role = c(\"cph\", \"fnd\"))\n    )",
+        "Description": "Building interactive web applications with R is incredibly easy\n  with 'shiny'. Behind the scenes, 'shiny' builds a reactive graph that can\n  quickly become intertwined and difficult to debug. 'reactlog'\n  (Schloerke 2019) <doi:10.5281/zenodo.2591517> provides a visual insight into\n  that black box of 'shiny' reactivity by constructing a directed dependency\n  graph of the application's reactive state at any time point in a reactive\n  recording.",
+        "Depends": "R (>= 3.0.2)",
+        "Imports": "jsonlite (>= 0.9.16),",
+        "Suggests": "shiny (>= 1.5.0), fontawesome (>= 0.3.0), knitr, rmarkdown,\nhtmltools, testthat",
+        "License": "GPL-3 | file LICENSE",
+        "Encoding": "UTF-8",
+        "RoxygenNote": "7.2.1",
+        "URL": "https://rstudio.github.io/reactlog/,\nhttps://github.com/rstudio/reactlog,\nhttps://community.rstudio.com/tag/reactlog",
+        "BugReports": "https://github.com/rstudio/reactlog/issues",
+        "VignetteBuilder": "knitr",
+        "Language": "en-US",
+        "NeedsCompilation": "no",
+        "Packaged": "2022-09-26 15:43:57 UTC; barret",
+        "Author": "Barret Schloerke [aut, cre] (<https://orcid.org/0000-0001-9986-114X>),\n  Joe Cheng [ctb],\n  RStudio [cph, fnd]",
+        "Maintainer": "Barret Schloerke <barret@rstudio.com>",
+        "Repository": "CRAN",
+        "Date/Publication": "2022-09-26 16:20:02 UTC",
+        "Built": "R 4.4.3; ; 2025-04-10 15:36:04 UTC; windows"
+      }
+    },
     "readr": {
       "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
@@ -4002,10 +4030,19 @@
   },
   "files": {
     "app.R": {
-      "checksum": "76a70c551a3c38b495cc2ef19afeac32"
+      "checksum": "27c1d87c521f5c897037da630ede5aee"
+    },
+    "code/Diagnostics/reactivity_graph.R": {
+      "checksum": "b7926a2cd106414371f7aa808d625144"
+    },
+    "code/elevation.R": {
+      "checksum": "8f86fe5b94e4a7a938b00892591eae78"
     },
     "code/landscape_connectivity.R": {
-      "checksum": "dcdbb656c404a90dfe0b945f197eae9f"
+      "checksum": "4c75a48b35a1001c9274feccfd896735"
+    },
+    "code/vegetation.R": {
+      "checksum": "986160c51d83de083573b0b2625b5375"
     },
     "data/CedarGroveMitigation/CedarGroveMitigation.cpg": {
       "checksum": "ae3b3df9970b49b6523e608759bc957d"
@@ -4126,6 +4163,9 @@
     },
     "data/current_outlets_SNO/tc_dist_outlets_SNO.shx": {
       "checksum": "4caad4404f2c2212bc40686fb0bb316b"
+    },
+    "data/elevation/cgelevation.tif": {
+      "checksum": "a8be02c501dda2b7505e55034defd55b"
     },
     "data/Historic_Veg/historic_veg.cpg": {
       "checksum": "ae3b3df9970b49b6523e608759bc957d"
@@ -4256,8 +4296,8 @@
     "data/TidalConnectivity/tidal_connectivity.shx": {
       "checksum": "f95e0b4fdc5e08655d4861d2a325e5ff"
     },
-    "prepare_data.R": {
-      "checksum": "64068edc50f0ca1d27813edda0c5ea88"
+    "README.md": {
+      "checksum": "fe0571f7cfa69570776521c1e83079eb"
     },
     "WWW/conceptualdiagram.png": {
       "checksum": "fe23fbdb2b16e85d6fd1d19f441c3b16"
