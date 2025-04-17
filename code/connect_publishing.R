@@ -9,4 +9,4 @@
 
 #The app is published on the test connect site
 #to update the app go to the app.R file and click on the publish button in the
-#upper right hand corner.
+#upper right hand corner. blue circle button.
