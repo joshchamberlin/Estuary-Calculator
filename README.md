@@ -2,6 +2,8 @@
 
 The Estuary Calculator is an R-Shiny application designed to estimate the habitat valuation of estuarine environments for salmonids. This tool helps researchers, conservationists, policymakers, and builders assess the ecological and economic value of estuarine habitats in supporting salmon populations.
 
+This repository is a R Shiny prototype of the user interphase for the Estuary Calculator. It is a draft product.
+
 ## Features
 
 - Habitat valuation calculations for estuarine environments
@@ -46,8 +48,3 @@ License
 
 [Specify license type if applicable, e.g., MIT, GPL, etc.]
 
-
-
-
-
-### new branch edit!
