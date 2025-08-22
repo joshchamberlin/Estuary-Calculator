@@ -4,6 +4,10 @@ The Estuary Calculator is an R-Shiny application designed to estimate the habita
 
 This repository is a R Shiny prototype of the user interphase for the Estuary Calculator. It is a draft product.
 
+The documentation for this project is in the [google shared drive](https://drive.google.com/drive/folders/1lmUKHCXn-VdrbKc_ow6PzDQd9Xl5_C9y) .
+
+The prototype app has been deployed on the [NOAA test connect site](https://test-connect.fisheries.noaa.gov/content/0fb2622a-b5a9-4401-b098-38e967a813a7)
+
 ## Features
 
 - Habitat valuation calculations for estuarine environments
