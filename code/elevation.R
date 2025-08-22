@@ -9,7 +9,20 @@ library(leaflet)
 library(terra)
 
 #TEMPORARY method: load data
-elevation <- rast("data/elevation/cgelevation.tif")
+#elevation <- rast("data/elevation/cgelevation.tif")
+lidar <- rast("data/large_files_ignore/2009snohomish_river_estuary.gdb",
+              lyrs = "snohomishriverestuary_be")
+
+footprint <- read_sf("data/CedarGroveMitigation")
+footprint <- st_transform(site, crs = st_crs(lidar))
+
+elevation <- crop(lidar, footprint, mask = T)
+
+elevation_df <- as.data.frame(elevation, xy = T)
+
+
+
+
 elevation_df <- as.data.frame(elevation, xy = T)
 
 #rename column

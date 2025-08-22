@@ -15,6 +15,7 @@ library(tidyverse)
 library(maps)
 library(sf)
 library(lwgeom)
+library(terra) #rasters
   #visualization
 library(leaflet)
 library(RColorBrewer)
@@ -26,12 +27,16 @@ site <- read_sf("data/CedarGroveMitigation")
 SnoDelta <- read_sf("data/SnoDelta")
 Hveg <- read_sf("data/Historic_Veg")
 l_connect <- read_sf("data/Landscape_Connectivity")
+lidar <- rast("data/large_files_ignore/2009snohomish_river_estuary.gdb",
+              lyrs = "snohomishriverestuary_be")
 
 # Source dependent scripts
 source(paste(getwd(), "/code/landscape_connectivity.R", sep = ""))
 source(paste(getwd(), "/code/vegetation.R", sep = ""))
 
 # Unify CRS
+site <- st_transform(site, crs = st_crs(lidar))
+
 st_crs(SnoDelta) #check CRS
 SnoDelta <- st_transform(SnoDelta, crs = st_crs(site))
 
@@ -110,13 +115,21 @@ ui <- dashboardPage(
                       label = "Upload a shapefile of the channel polygons",
                       multiple = T,
                       accept = c(".shp", ".dbf", ".sbn", ".sbx", ".shx", ".prj")),
+            #Project Footprint Map
             leafletOutput(outputId = "map", height = 900)
             ),
     #--------------------------------
     # Metrics Tab
     tabItem(tabName = "site",
+            #Habitat type interactive map
             leafletOutput(outputId = "veginteract"),
-            plotOutput(outputId = "vegplot")
+            #Habitat type bar plot
+            plotOutput(outputId = "vegplot"),
+            sliderInput("elevation_bound", "Elevation Bounds",
+                        min = 0, max = 100,
+                        value = c(0, 100)),
+            #Elevation plot
+            plotOutput(outputId = "elevation_plot")
             ),
     tabItem(tabName = "landscape"
             ),
@@ -233,6 +246,20 @@ server <- function(input, output, session) {
     habitat_change_plot
   })
 
+  #Elevation
+  elevation <- reactive({
+    crop(lidar, footprint(), mask = T)
+  })
+  
+  elevation_df <- as.data.frame(elevation(), xy = T)
+  
+  bounds <- reactive(input$elevation_bound)
+  
+  output$elevation_plot <- renderPlot({
+    plot(elevation() %>% 
+           filter(snohomishriverestuary_be < bounds[2] & 
+                    snohomishriveresturary_be > bounds[1]))
+  })
   
   #Landscape Metrics
   
